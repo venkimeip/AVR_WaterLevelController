@@ -1,0 +1,6 @@
+Atmega16 MCU,
+UART,
+Timer0
+ADC
+LCD-4 bit interface
+Basic modbus
