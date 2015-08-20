@@ -1,0 +1,4013 @@
+
+GLCD_Test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000110e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000050  00800060  0000110e  000011a2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000056  008000b0  008000b0  000011f2  2**0
+                  ALLOC
+  3 .debug_aranges 000000e0  00000000  00000000  000011f2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000447  00000000  00000000  000012d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00002790  00000000  00000000  00001719  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000823  00000000  00000000  00003ea9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00001f18  00000000  00000000  000046cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000280  00000000  00000000  000065e4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000004bc  00000000  00000000  00006864  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000aff  00000000  00000000  00006d20  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000360  00000000  00000000  0000781f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+       4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      10:	0c 94 93 03 	jmp	0x726	; 0x726 <__vector_4>
+      14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      24:	0c 94 3f 03 	jmp	0x67e	; 0x67e <__vector_9>
+      28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      2c:	0c 94 4b 04 	jmp	0x896	; 0x896 <__vector_11>
+      30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+      54:	11 24       	eor	r1, r1
+      56:	1f be       	out	0x3f, r1	; 63
+      58:	cf e5       	ldi	r28, 0x5F	; 95
+      5a:	d4 e0       	ldi	r29, 0x04	; 4
+      5c:	de bf       	out	0x3e, r29	; 62
+      5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+      60:	10 e0       	ldi	r17, 0x00	; 0
+      62:	a0 e6       	ldi	r26, 0x60	; 96
+      64:	b0 e0       	ldi	r27, 0x00	; 0
+      66:	ee e0       	ldi	r30, 0x0E	; 14
+      68:	f1 e1       	ldi	r31, 0x11	; 17
+      6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+      6c:	05 90       	lpm	r0, Z+
+      6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+      70:	a0 3b       	cpi	r26, 0xB0	; 176
+      72:	b1 07       	cpc	r27, r17
+      74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+      76:	11 e0       	ldi	r17, 0x01	; 1
+      78:	a0 eb       	ldi	r26, 0xB0	; 176
+      7a:	b0 e0       	ldi	r27, 0x00	; 0
+      7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+      7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+      80:	a6 30       	cpi	r26, 0x06	; 6
+      82:	b1 07       	cpc	r27, r17
+      84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+      86:	0e 94 23 02 	call	0x446	; 0x446 <main>
+      8a:	0c 94 85 08 	jmp	0x110a	; 0x110a <_exit>
+
+0000008e <__bad_interrupt>:
+      8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <ADC_ReadDisp_All>:
+void ADC_ReadDisp_All(void)
+{
+//ADC CH0
+		
+
+		Adc_result_u16 = ADC_Read_CH(0);
+      92:	80 e0       	ldi	r24, 0x00	; 0
+      94:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+      98:	90 93 b1 00 	sts	0x00B1, r25
+      9c:	80 93 b0 00 	sts	0x00B0, r24
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 13);
+      a0:	8d ec       	ldi	r24, 0xCD	; 205
+      a2:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+		i=Adc_result_u16/100;
+      a6:	80 91 b0 00 	lds	r24, 0x00B0
+      aa:	90 91 b1 00 	lds	r25, 0x00B1
+      ae:	64 e6       	ldi	r22, 0x64	; 100
+      b0:	70 e0       	ldi	r23, 0x00	; 0
+      b2:	0e 94 71 08 	call	0x10e2	; 0x10e2 <__udivmodhi4>
+      b6:	86 2f       	mov	r24, r22
+      b8:	60 93 c5 00 	sts	0x00C5, r22
+		lcd_write_character_4d(i | 0x30);//Disp First char
+      bc:	80 63       	ori	r24, 0x30	; 48
+      be:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		
+		i=Adc_result_u16 % 100;
+      c2:	80 91 b0 00 	lds	r24, 0x00B0
+      c6:	90 91 b1 00 	lds	r25, 0x00B1
+      ca:	64 e6       	ldi	r22, 0x64	; 100
+      cc:	70 e0       	ldi	r23, 0x00	; 0
+      ce:	0e 94 71 08 	call	0x10e2	; 0x10e2 <__udivmodhi4>
+      d2:	80 93 c5 00 	sts	0x00C5, r24
+		j=i/10;
+      d6:	6a e0       	ldi	r22, 0x0A	; 10
+      d8:	0e 94 65 08 	call	0x10ca	; 0x10ca <__udivmodqi4>
+      dc:	80 93 c2 00 	sts	0x00C2, r24
+		lcd_write_character_4d(j | 0x30);//Disp First char
+      e0:	80 63       	ori	r24, 0x30	; 48
+      e2:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		j=i%10;
+      e6:	80 91 c5 00 	lds	r24, 0x00C5
+      ea:	6a e0       	ldi	r22, 0x0A	; 10
+      ec:	0e 94 65 08 	call	0x10ca	; 0x10ca <__udivmodqi4>
+      f0:	89 2f       	mov	r24, r25
+      f2:	90 93 c2 00 	sts	0x00C2, r25
+		lcd_write_character_4d(j | 0x30);//Disp First char
+      f6:	80 63       	ori	r24, 0x30	; 48
+      f8:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+
+		
+		if(Adc_result_u16 > ADC_CH_TH)
+      fc:	80 91 b0 00 	lds	r24, 0x00B0
+     100:	90 91 b1 00 	lds	r25, 0x00B1
+     104:	85 5f       	subi	r24, 0xF5	; 245
+     106:	91 40       	sbci	r25, 0x01	; 1
+     108:	08 f4       	brcc	.+2      	; 0x10c <ADC_ReadDisp_All+0x7a>
+     10a:	51 c1       	rjmp	.+674    	; 0x3ae <ADC_ReadDisp_All+0x31c>
+		{	
+			 ADC_Debounce_ChNo[0]++;
+     10c:	80 91 db 00 	lds	r24, 0x00DB
+     110:	8f 5f       	subi	r24, 0xFF	; 255
+     112:	80 93 db 00 	sts	0x00DB, r24
+			if(ADC_Debounce_ChNo[0] > 10)
+     116:	8b 30       	cpi	r24, 0x0B	; 11
+     118:	08 f0       	brcs	.+2      	; 0x11c <ADC_ReadDisp_All+0x8a>
+     11a:	89 c1       	rjmp	.+786    	; 0x42e <ADC_ReadDisp_All+0x39c>
+			ADC_Debounce_ChNo[0]=0;
+			ADC_Debounce_State &= ~0x01;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 0);
+     11c:	80 ec       	ldi	r24, 0xC0	; 192
+     11e:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+     122:	8a ef       	ldi	r24, 0xFA	; 250
+     124:	90 e0       	ldi	r25, 0x00	; 0
+     126:	01 97       	sbiw	r24, 0x01	; 1
+     128:	f1 f7       	brne	.-4      	; 0x126 <ADC_ReadDisp_All+0x94>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x01)
+     12a:	80 91 da 00 	lds	r24, 0x00DA
+     12e:	80 ff       	sbrs	r24, 0
+     130:	3a c1       	rjmp	.+628    	; 0x3a6 <ADC_ReadDisp_All+0x314>
+		lcd_write_character_4d('*');
+     132:	8a e2       	ldi	r24, 0x2A	; 42
+     134:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		lcd_write_character_4d(' ');
+		
+		
+//ADC CH1
+
+	Adc_result_u16 = ADC_Read_CH(1);
+     138:	81 e0       	ldi	r24, 0x01	; 1
+     13a:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     13e:	90 93 b1 00 	sts	0x00B1, r25
+     142:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     146:	85 5f       	subi	r24, 0xF5	; 245
+     148:	91 40       	sbci	r25, 0x01	; 1
+     14a:	08 f4       	brcc	.+2      	; 0x14e <ADC_ReadDisp_All+0xbc>
+     14c:	24 c1       	rjmp	.+584    	; 0x396 <ADC_ReadDisp_All+0x304>
+		{	
+			 ADC_Debounce_ChNo[1]++;
+     14e:	80 91 dc 00 	lds	r24, 0x00DC
+     152:	8f 5f       	subi	r24, 0xFF	; 255
+     154:	80 93 dc 00 	sts	0x00DC, r24
+			if(ADC_Debounce_ChNo[1] > 10)
+     158:	8b 30       	cpi	r24, 0x0B	; 11
+     15a:	08 f0       	brcs	.+2      	; 0x15e <ADC_ReadDisp_All+0xcc>
+     15c:	60 c1       	rjmp	.+704    	; 0x41e <ADC_ReadDisp_All+0x38c>
+			ADC_Debounce_ChNo[1]=0;
+			ADC_Debounce_State &= ~0x02;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 1);
+     15e:	81 ec       	ldi	r24, 0xC1	; 193
+     160:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     164:	8a ef       	ldi	r24, 0xFA	; 250
+     166:	90 e0       	ldi	r25, 0x00	; 0
+     168:	01 97       	sbiw	r24, 0x01	; 1
+     16a:	f1 f7       	brne	.-4      	; 0x168 <ADC_ReadDisp_All+0xd6>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x02)
+     16c:	80 91 da 00 	lds	r24, 0x00DA
+     170:	81 ff       	sbrs	r24, 1
+     172:	0d c1       	rjmp	.+538    	; 0x38e <ADC_ReadDisp_All+0x2fc>
+		lcd_write_character_4d('*');
+     174:	8a e2       	ldi	r24, 0x2A	; 42
+     176:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		lcd_write_character_4d(' ');
+		
+//-------------------------------------------------------------
+//ADC CH2
+
+	Adc_result_u16 = ADC_Read_CH(2);
+     17a:	82 e0       	ldi	r24, 0x02	; 2
+     17c:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     180:	90 93 b1 00 	sts	0x00B1, r25
+     184:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     188:	85 5f       	subi	r24, 0xF5	; 245
+     18a:	91 40       	sbci	r25, 0x01	; 1
+     18c:	08 f4       	brcc	.+2      	; 0x190 <ADC_ReadDisp_All+0xfe>
+     18e:	f7 c0       	rjmp	.+494    	; 0x37e <ADC_ReadDisp_All+0x2ec>
+		{	
+			 ADC_Debounce_ChNo[2]++;
+     190:	80 91 dd 00 	lds	r24, 0x00DD
+     194:	8f 5f       	subi	r24, 0xFF	; 255
+     196:	80 93 dd 00 	sts	0x00DD, r24
+			if(ADC_Debounce_ChNo[2] > 10)
+     19a:	8b 30       	cpi	r24, 0x0B	; 11
+     19c:	08 f0       	brcs	.+2      	; 0x1a0 <ADC_ReadDisp_All+0x10e>
+     19e:	37 c1       	rjmp	.+622    	; 0x40e <ADC_ReadDisp_All+0x37c>
+			ADC_Debounce_ChNo[2]=0;
+			ADC_Debounce_State &= ~0x04;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 2);
+     1a0:	82 ec       	ldi	r24, 0xC2	; 194
+     1a2:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     1a6:	8a ef       	ldi	r24, 0xFA	; 250
+     1a8:	90 e0       	ldi	r25, 0x00	; 0
+     1aa:	01 97       	sbiw	r24, 0x01	; 1
+     1ac:	f1 f7       	brne	.-4      	; 0x1aa <ADC_ReadDisp_All+0x118>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x04)
+     1ae:	80 91 da 00 	lds	r24, 0x00DA
+     1b2:	82 ff       	sbrs	r24, 2
+     1b4:	e0 c0       	rjmp	.+448    	; 0x376 <ADC_ReadDisp_All+0x2e4>
+		lcd_write_character_4d('*');
+     1b6:	8a e2       	ldi	r24, 0x2A	; 42
+     1b8:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		else
+		lcd_write_character_4d(' ');		
+//-------------------------------------------------------------
+//ADC CH3
+
+	Adc_result_u16 = ADC_Read_CH(3);
+     1bc:	83 e0       	ldi	r24, 0x03	; 3
+     1be:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     1c2:	90 93 b1 00 	sts	0x00B1, r25
+     1c6:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     1ca:	85 5f       	subi	r24, 0xF5	; 245
+     1cc:	91 40       	sbci	r25, 0x01	; 1
+     1ce:	08 f4       	brcc	.+2      	; 0x1d2 <ADC_ReadDisp_All+0x140>
+     1d0:	ca c0       	rjmp	.+404    	; 0x366 <ADC_ReadDisp_All+0x2d4>
+		{	
+			 ADC_Debounce_ChNo[3]++;
+     1d2:	80 91 de 00 	lds	r24, 0x00DE
+     1d6:	8f 5f       	subi	r24, 0xFF	; 255
+     1d8:	80 93 de 00 	sts	0x00DE, r24
+			if(ADC_Debounce_ChNo[3] > 10)
+     1dc:	8b 30       	cpi	r24, 0x0B	; 11
+     1de:	08 f0       	brcs	.+2      	; 0x1e2 <ADC_ReadDisp_All+0x150>
+     1e0:	0e c1       	rjmp	.+540    	; 0x3fe <ADC_ReadDisp_All+0x36c>
+			ADC_Debounce_ChNo[3]=0;
+			ADC_Debounce_State &= ~0x08;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 3);
+     1e2:	83 ec       	ldi	r24, 0xC3	; 195
+     1e4:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     1e8:	8a ef       	ldi	r24, 0xFA	; 250
+     1ea:	90 e0       	ldi	r25, 0x00	; 0
+     1ec:	01 97       	sbiw	r24, 0x01	; 1
+     1ee:	f1 f7       	brne	.-4      	; 0x1ec <ADC_ReadDisp_All+0x15a>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x08)
+     1f0:	80 91 da 00 	lds	r24, 0x00DA
+     1f4:	83 ff       	sbrs	r24, 3
+     1f6:	b3 c0       	rjmp	.+358    	; 0x35e <ADC_ReadDisp_All+0x2cc>
+		lcd_write_character_4d('*');
+     1f8:	8a e2       	ldi	r24, 0x2A	; 42
+     1fa:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		else
+		lcd_write_character_4d(' ');
+		//-------------------------------------------------------------
+//ADC CH4
+
+	Adc_result_u16 = ADC_Read_CH(4);
+     1fe:	84 e0       	ldi	r24, 0x04	; 4
+     200:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     204:	90 93 b1 00 	sts	0x00B1, r25
+     208:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     20c:	85 5f       	subi	r24, 0xF5	; 245
+     20e:	91 40       	sbci	r25, 0x01	; 1
+     210:	08 f4       	brcc	.+2      	; 0x214 <ADC_ReadDisp_All+0x182>
+     212:	9d c0       	rjmp	.+314    	; 0x34e <ADC_ReadDisp_All+0x2bc>
+		{	
+			 ADC_Debounce_ChNo[4]++;
+     214:	80 91 df 00 	lds	r24, 0x00DF
+     218:	8f 5f       	subi	r24, 0xFF	; 255
+     21a:	80 93 df 00 	sts	0x00DF, r24
+			if(ADC_Debounce_ChNo[4] > 10)
+     21e:	8b 30       	cpi	r24, 0x0B	; 11
+     220:	08 f0       	brcs	.+2      	; 0x224 <ADC_ReadDisp_All+0x192>
+     222:	e5 c0       	rjmp	.+458    	; 0x3ee <ADC_ReadDisp_All+0x35c>
+			ADC_Debounce_ChNo[4]=0;
+			ADC_Debounce_State &= ~0x10;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 4);
+     224:	84 ec       	ldi	r24, 0xC4	; 196
+     226:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     22a:	8a ef       	ldi	r24, 0xFA	; 250
+     22c:	90 e0       	ldi	r25, 0x00	; 0
+     22e:	01 97       	sbiw	r24, 0x01	; 1
+     230:	f1 f7       	brne	.-4      	; 0x22e <ADC_ReadDisp_All+0x19c>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x10)
+     232:	80 91 da 00 	lds	r24, 0x00DA
+     236:	84 ff       	sbrs	r24, 4
+     238:	86 c0       	rjmp	.+268    	; 0x346 <ADC_ReadDisp_All+0x2b4>
+		lcd_write_character_4d('*');
+     23a:	8a e2       	ldi	r24, 0x2A	; 42
+     23c:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		lcd_write_character_4d(' ');
+//--------------------------------------------------------------
+
+//ADC CH5
+
+	Adc_result_u16 = ADC_Read_CH(5);
+     240:	85 e0       	ldi	r24, 0x05	; 5
+     242:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     246:	90 93 b1 00 	sts	0x00B1, r25
+     24a:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     24e:	85 5f       	subi	r24, 0xF5	; 245
+     250:	91 40       	sbci	r25, 0x01	; 1
+     252:	08 f4       	brcc	.+2      	; 0x256 <ADC_ReadDisp_All+0x1c4>
+     254:	70 c0       	rjmp	.+224    	; 0x336 <ADC_ReadDisp_All+0x2a4>
+		{	
+			 ADC_Debounce_ChNo[5]++;
+     256:	80 91 e0 00 	lds	r24, 0x00E0
+     25a:	8f 5f       	subi	r24, 0xFF	; 255
+     25c:	80 93 e0 00 	sts	0x00E0, r24
+			if(ADC_Debounce_ChNo[5] > 10)
+     260:	8b 30       	cpi	r24, 0x0B	; 11
+     262:	08 f0       	brcs	.+2      	; 0x266 <ADC_ReadDisp_All+0x1d4>
+     264:	bc c0       	rjmp	.+376    	; 0x3de <ADC_ReadDisp_All+0x34c>
+			ADC_Debounce_ChNo[5]=0;
+			ADC_Debounce_State &= ~0x20;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 5);
+     266:	85 ec       	ldi	r24, 0xC5	; 197
+     268:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     26c:	8a ef       	ldi	r24, 0xFA	; 250
+     26e:	90 e0       	ldi	r25, 0x00	; 0
+     270:	01 97       	sbiw	r24, 0x01	; 1
+     272:	f1 f7       	brne	.-4      	; 0x270 <ADC_ReadDisp_All+0x1de>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x20)
+     274:	80 91 da 00 	lds	r24, 0x00DA
+     278:	85 ff       	sbrs	r24, 5
+     27a:	59 c0       	rjmp	.+178    	; 0x32e <ADC_ReadDisp_All+0x29c>
+		lcd_write_character_4d('*');
+     27c:	8a e2       	ldi	r24, 0x2A	; 42
+     27e:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+		lcd_write_character_4d(' ');
+		//--------------------------------------------------------------
+
+//ADC CH6
+
+	Adc_result_u16 = ADC_Read_CH(6);
+     282:	86 e0       	ldi	r24, 0x06	; 6
+     284:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     288:	90 93 b1 00 	sts	0x00B1, r25
+     28c:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     290:	85 5f       	subi	r24, 0xF5	; 245
+     292:	91 40       	sbci	r25, 0x01	; 1
+     294:	08 f4       	brcc	.+2      	; 0x298 <ADC_ReadDisp_All+0x206>
+     296:	43 c0       	rjmp	.+134    	; 0x31e <ADC_ReadDisp_All+0x28c>
+		{	
+			 ADC_Debounce_ChNo[6]++;
+     298:	80 91 e1 00 	lds	r24, 0x00E1
+     29c:	8f 5f       	subi	r24, 0xFF	; 255
+     29e:	80 93 e1 00 	sts	0x00E1, r24
+			if(ADC_Debounce_ChNo[6] > 10)
+     2a2:	8b 30       	cpi	r24, 0x0B	; 11
+     2a4:	08 f0       	brcs	.+2      	; 0x2a8 <ADC_ReadDisp_All+0x216>
+     2a6:	93 c0       	rjmp	.+294    	; 0x3ce <ADC_ReadDisp_All+0x33c>
+			ADC_Debounce_ChNo[6]=0;
+			ADC_Debounce_State &= ~0x40;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 6);
+     2a8:	86 ec       	ldi	r24, 0xC6	; 198
+     2aa:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     2ae:	8a ef       	ldi	r24, 0xFA	; 250
+     2b0:	90 e0       	ldi	r25, 0x00	; 0
+     2b2:	01 97       	sbiw	r24, 0x01	; 1
+     2b4:	f1 f7       	brne	.-4      	; 0x2b2 <ADC_ReadDisp_All+0x220>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x40)
+     2b6:	80 91 da 00 	lds	r24, 0x00DA
+     2ba:	86 ff       	sbrs	r24, 6
+     2bc:	2c c0       	rjmp	.+88     	; 0x316 <ADC_ReadDisp_All+0x284>
+		lcd_write_character_4d('*');
+     2be:	8a e2       	ldi	r24, 0x2A	; 42
+     2c0:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+//--------------------------------------------------------------
+
+
+//ADC CH7
+
+	Adc_result_u16 = ADC_Read_CH(7);
+     2c4:	87 e0       	ldi	r24, 0x07	; 7
+     2c6:	0e 94 87 04 	call	0x90e	; 0x90e <ADC_Read_CH>
+     2ca:	90 93 b1 00 	sts	0x00B1, r25
+     2ce:	80 93 b0 00 	sts	0x00B0, r24
+		if(Adc_result_u16 > ADC_CH_TH)
+     2d2:	85 5f       	subi	r24, 0xF5	; 245
+     2d4:	91 40       	sbci	r25, 0x01	; 1
+     2d6:	b8 f0       	brcs	.+46     	; 0x306 <ADC_ReadDisp_All+0x274>
+		{	
+			 ADC_Debounce_ChNo[7]++;
+     2d8:	80 91 e2 00 	lds	r24, 0x00E2
+     2dc:	8f 5f       	subi	r24, 0xFF	; 255
+     2de:	80 93 e2 00 	sts	0x00E2, r24
+			if(ADC_Debounce_ChNo[7] > 10)
+     2e2:	8b 30       	cpi	r24, 0x0B	; 11
+     2e4:	08 f0       	brcs	.+2      	; 0x2e8 <ADC_ReadDisp_All+0x256>
+     2e6:	6b c0       	rjmp	.+214    	; 0x3be <ADC_ReadDisp_All+0x32c>
+			ADC_Debounce_ChNo[7]=0;
+			ADC_Debounce_State &= ~0x80;
+		}
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 7);
+     2e8:	87 ec       	ldi	r24, 0xC7	; 199
+     2ea:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+     2ee:	8a ef       	ldi	r24, 0xFA	; 250
+     2f0:	90 e0       	ldi	r25, 0x00	; 0
+     2f2:	01 97       	sbiw	r24, 0x01	; 1
+     2f4:	f1 f7       	brne	.-4      	; 0x2f2 <ADC_ReadDisp_All+0x260>
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x80)
+     2f6:	80 91 da 00 	lds	r24, 0x00DA
+     2fa:	87 fd       	sbrc	r24, 7
+     2fc:	a0 c0       	rjmp	.+320    	; 0x43e <ADC_ReadDisp_All+0x3ac>
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     2fe:	80 e2       	ldi	r24, 0x20	; 32
+     300:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     304:	08 95       	ret
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[7]=0;
+     306:	10 92 e2 00 	sts	0x00E2, r1
+			ADC_Debounce_State &= ~0x80;
+     30a:	80 91 da 00 	lds	r24, 0x00DA
+     30e:	8f 77       	andi	r24, 0x7F	; 127
+     310:	80 93 da 00 	sts	0x00DA, r24
+     314:	e9 cf       	rjmp	.-46     	; 0x2e8 <ADC_ReadDisp_All+0x256>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 6);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x40)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     316:	80 e2       	ldi	r24, 0x20	; 32
+     318:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     31c:	d3 cf       	rjmp	.-90     	; 0x2c4 <ADC_ReadDisp_All+0x232>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[6]=0;
+     31e:	10 92 e1 00 	sts	0x00E1, r1
+			ADC_Debounce_State &= ~0x40;
+     322:	80 91 da 00 	lds	r24, 0x00DA
+     326:	8f 7b       	andi	r24, 0xBF	; 191
+     328:	80 93 da 00 	sts	0x00DA, r24
+     32c:	bd cf       	rjmp	.-134    	; 0x2a8 <ADC_ReadDisp_All+0x216>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 5);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x20)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     32e:	80 e2       	ldi	r24, 0x20	; 32
+     330:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     334:	a6 cf       	rjmp	.-180    	; 0x282 <ADC_ReadDisp_All+0x1f0>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[5]=0;
+     336:	10 92 e0 00 	sts	0x00E0, r1
+			ADC_Debounce_State &= ~0x20;
+     33a:	80 91 da 00 	lds	r24, 0x00DA
+     33e:	8f 7d       	andi	r24, 0xDF	; 223
+     340:	80 93 da 00 	sts	0x00DA, r24
+     344:	90 cf       	rjmp	.-224    	; 0x266 <ADC_ReadDisp_All+0x1d4>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 4);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x10)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     346:	80 e2       	ldi	r24, 0x20	; 32
+     348:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     34c:	79 cf       	rjmp	.-270    	; 0x240 <ADC_ReadDisp_All+0x1ae>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[4]=0;
+     34e:	10 92 df 00 	sts	0x00DF, r1
+			ADC_Debounce_State &= ~0x10;
+     352:	80 91 da 00 	lds	r24, 0x00DA
+     356:	8f 7e       	andi	r24, 0xEF	; 239
+     358:	80 93 da 00 	sts	0x00DA, r24
+     35c:	63 cf       	rjmp	.-314    	; 0x224 <ADC_ReadDisp_All+0x192>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 3);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x08)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     35e:	80 e2       	ldi	r24, 0x20	; 32
+     360:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     364:	4c cf       	rjmp	.-360    	; 0x1fe <ADC_ReadDisp_All+0x16c>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[3]=0;
+     366:	10 92 de 00 	sts	0x00DE, r1
+			ADC_Debounce_State &= ~0x08;
+     36a:	80 91 da 00 	lds	r24, 0x00DA
+     36e:	87 7f       	andi	r24, 0xF7	; 247
+     370:	80 93 da 00 	sts	0x00DA, r24
+     374:	36 cf       	rjmp	.-404    	; 0x1e2 <ADC_ReadDisp_All+0x150>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 2);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x04)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');		
+     376:	80 e2       	ldi	r24, 0x20	; 32
+     378:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     37c:	1f cf       	rjmp	.-450    	; 0x1bc <ADC_ReadDisp_All+0x12a>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[2]=0;
+     37e:	10 92 dd 00 	sts	0x00DD, r1
+			ADC_Debounce_State &= ~0x04;
+     382:	80 91 da 00 	lds	r24, 0x00DA
+     386:	8b 7f       	andi	r24, 0xFB	; 251
+     388:	80 93 da 00 	sts	0x00DA, r24
+     38c:	09 cf       	rjmp	.-494    	; 0x1a0 <ADC_ReadDisp_All+0x10e>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 1);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x02)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     38e:	80 e2       	ldi	r24, 0x20	; 32
+     390:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     394:	f2 ce       	rjmp	.-540    	; 0x17a <ADC_ReadDisp_All+0xe8>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[1]=0;
+     396:	10 92 dc 00 	sts	0x00DC, r1
+			ADC_Debounce_State &= ~0x02;
+     39a:	80 91 da 00 	lds	r24, 0x00DA
+     39e:	8d 7f       	andi	r24, 0xFD	; 253
+     3a0:	80 93 da 00 	sts	0x00DA, r24
+     3a4:	dc ce       	rjmp	.-584    	; 0x15e <ADC_ReadDisp_All+0xcc>
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 0);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x01)
+		lcd_write_character_4d('*');
+		else
+		lcd_write_character_4d(' ');
+     3a6:	80 e2       	ldi	r24, 0x20	; 32
+     3a8:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     3ac:	c5 ce       	rjmp	.-630    	; 0x138 <ADC_ReadDisp_All+0xa6>
+			}
+		 //PORTB=k;
+		}
+		else
+		{
+			ADC_Debounce_ChNo[0]=0;
+     3ae:	10 92 db 00 	sts	0x00DB, r1
+			ADC_Debounce_State &= ~0x01;
+     3b2:	80 91 da 00 	lds	r24, 0x00DA
+     3b6:	8e 7f       	andi	r24, 0xFE	; 254
+     3b8:	80 93 da 00 	sts	0x00DA, r24
+     3bc:	af ce       	rjmp	.-674    	; 0x11c <ADC_ReadDisp_All+0x8a>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[7]++;
+			if(ADC_Debounce_ChNo[7] > 10)
+			{
+				ADC_Debounce_State |= 0x80;
+     3be:	80 91 da 00 	lds	r24, 0x00DA
+     3c2:	80 68       	ori	r24, 0x80	; 128
+     3c4:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[7]=0;
+     3c8:	10 92 e2 00 	sts	0x00E2, r1
+     3cc:	8d cf       	rjmp	.-230    	; 0x2e8 <ADC_ReadDisp_All+0x256>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[6]++;
+			if(ADC_Debounce_ChNo[6] > 10)
+			{
+				ADC_Debounce_State |= 0x40;
+     3ce:	80 91 da 00 	lds	r24, 0x00DA
+     3d2:	80 64       	ori	r24, 0x40	; 64
+     3d4:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[6]=0;
+     3d8:	10 92 e1 00 	sts	0x00E1, r1
+     3dc:	65 cf       	rjmp	.-310    	; 0x2a8 <ADC_ReadDisp_All+0x216>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[5]++;
+			if(ADC_Debounce_ChNo[5] > 10)
+			{
+				ADC_Debounce_State |= 0x20;
+     3de:	80 91 da 00 	lds	r24, 0x00DA
+     3e2:	80 62       	ori	r24, 0x20	; 32
+     3e4:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[5]=0;
+     3e8:	10 92 e0 00 	sts	0x00E0, r1
+     3ec:	3c cf       	rjmp	.-392    	; 0x266 <ADC_ReadDisp_All+0x1d4>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[4]++;
+			if(ADC_Debounce_ChNo[4] > 10)
+			{
+				ADC_Debounce_State |= 0x10;
+     3ee:	80 91 da 00 	lds	r24, 0x00DA
+     3f2:	80 61       	ori	r24, 0x10	; 16
+     3f4:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[4]=0;
+     3f8:	10 92 df 00 	sts	0x00DF, r1
+     3fc:	13 cf       	rjmp	.-474    	; 0x224 <ADC_ReadDisp_All+0x192>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[3]++;
+			if(ADC_Debounce_ChNo[3] > 10)
+			{
+				ADC_Debounce_State |= 0x08;
+     3fe:	80 91 da 00 	lds	r24, 0x00DA
+     402:	88 60       	ori	r24, 0x08	; 8
+     404:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[3]=0;
+     408:	10 92 de 00 	sts	0x00DE, r1
+     40c:	ea ce       	rjmp	.-556    	; 0x1e2 <ADC_ReadDisp_All+0x150>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[2]++;
+			if(ADC_Debounce_ChNo[2] > 10)
+			{
+				ADC_Debounce_State |= 0x04;
+     40e:	80 91 da 00 	lds	r24, 0x00DA
+     412:	84 60       	ori	r24, 0x04	; 4
+     414:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[2]=0;
+     418:	10 92 dd 00 	sts	0x00DD, r1
+     41c:	c1 ce       	rjmp	.-638    	; 0x1a0 <ADC_ReadDisp_All+0x10e>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[1]++;
+			if(ADC_Debounce_ChNo[1] > 10)
+			{
+				ADC_Debounce_State |= 0x02;
+     41e:	80 91 da 00 	lds	r24, 0x00DA
+     422:	82 60       	ori	r24, 0x02	; 2
+     424:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[1]=0;
+     428:	10 92 dc 00 	sts	0x00DC, r1
+     42c:	98 ce       	rjmp	.-720    	; 0x15e <ADC_ReadDisp_All+0xcc>
+		if(Adc_result_u16 > ADC_CH_TH)
+		{	
+			 ADC_Debounce_ChNo[0]++;
+			if(ADC_Debounce_ChNo[0] > 10)
+			{
+				ADC_Debounce_State |= 0x01;
+     42e:	80 91 da 00 	lds	r24, 0x00DA
+     432:	81 60       	ori	r24, 0x01	; 1
+     434:	80 93 da 00 	sts	0x00DA, r24
+				ADC_Debounce_ChNo[0]=0;
+     438:	10 92 db 00 	sts	0x00DB, r1
+     43c:	6f ce       	rjmp	.-802    	; 0x11c <ADC_ReadDisp_All+0x8a>
+		
+		
+		lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo | 7);
+		_delay_ms(1);
+		if(ADC_Debounce_State & 0x80)
+		lcd_write_character_4d('*');
+     43e:	8a e2       	ldi	r24, 0x2A	; 42
+     440:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+     444:	08 95       	ret
+
+00000446 <main>:
+uint16_t Calculated_crc_Val=0;
+uint16_t MB_Requested_Length=0;
+uint8_t Modbus_TxBuff[20];
+
+int main(void)
+{
+     446:	cf 92       	push	r12
+     448:	df 92       	push	r13
+     44a:	ff 92       	push	r15
+     44c:	0f 93       	push	r16
+     44e:	1f 93       	push	r17
+     450:	cf 93       	push	r28
+     452:	df 93       	push	r29
+	
+
+
+	switch_init();
+     454:	0e 94 ff 07 	call	0xffe	; 0xffe <switch_init>
+	DDRC=0x3F;
+     458:	8f e3       	ldi	r24, 0x3F	; 63
+     45a:	84 bb       	out	0x14, r24	; 20
+	PORTC=0x55;
+     45c:	85 e5       	ldi	r24, 0x55	; 85
+     45e:	85 bb       	out	0x15, r24	; 21
+	DDRB|=0x80;//PB.7 -> Modbus direction control : Output
+     460:	bf 9a       	sbi	0x17, 7	; 23
+MB_RX_ENABLE();
+     462:	c7 98       	cbi	0x18, 7	; 24
+
+#if 1
+	Uart_init(12);//9600 @ 1MHz Internal clock
+     464:	8c e0       	ldi	r24, 0x0C	; 12
+     466:	90 e0       	ldi	r25, 0x00	; 0
+     468:	0e 94 a1 03 	call	0x742	; 0x742 <Uart_init>
+	9600 - > 12
+	4800-> 25
+	*/
+	
+
+	InitTimer0();
+     46c:	0e 94 37 03 	call	0x66e	; 0x66e <InitTimer0>
+
+	ADC_init();
+     470:	0e 94 83 04 	call	0x906	; 0x906 <ADC_init>
+//	RTC_init();
+	
+// initialize the LCD controller as determined by the defines (LCD instructions)
+    lcd_init_4d();                                  // initialize the LCD display for a 4-bit interface
+     474:	0e 94 be 05 	call	0xb7c	; 0xb7c <lcd_init_4d>
+
+// display the first line of information
+    //lcd_write_string_4d("Hello World");
+Uart_TxChar('A');
+     478:	81 e4       	ldi	r24, 0x41	; 65
+     47a:	0e 94 ac 03 	call	0x758	; 0x758 <Uart_TxChar>
+Uart_TxChar('V');
+     47e:	86 e5       	ldi	r24, 0x56	; 86
+     480:	0e 94 ac 03 	call	0x758	; 0x758 <Uart_TxChar>
+Uart_TxChar('R');
+     484:	82 e5       	ldi	r24, 0x52	; 82
+     486:	0e 94 ac 03 	call	0x758	; 0x758 <Uart_TxChar>
+#endif
+init_SWTimer();
+     48a:	0e 94 84 07 	call	0xf08	; 0xf08 <init_SWTimer>
+     48e:	80 e0       	ldi	r24, 0x00	; 0
+     490:	90 e0       	ldi	r25, 0x00	; 0
+     492:	29 e1       	ldi	r18, 0x19	; 25
+     494:	30 e0       	ldi	r19, 0x00	; 0
+     496:	f9 01       	movw	r30, r18
+     498:	31 97       	sbiw	r30, 0x01	; 1
+     49a:	f1 f7       	brne	.-4      	; 0x498 <__stack+0x39>
+     49c:	01 96       	adiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+     49e:	43 e1       	ldi	r20, 0x13	; 19
+     4a0:	88 38       	cpi	r24, 0x88	; 136
+     4a2:	94 07       	cpc	r25, r20
+     4a4:	c1 f7       	brne	.-16     	; 0x496 <__stack+0x37>
+_delay_ms(500);
+Start_Timer(TIMER_0,1000);
+     4a6:	80 e0       	ldi	r24, 0x00	; 0
+     4a8:	68 ee       	ldi	r22, 0xE8	; 232
+     4aa:	73 e0       	ldi	r23, 0x03	; 3
+     4ac:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+Start_Timer(TIMER_2,10);
+     4b0:	82 e0       	ldi	r24, 0x02	; 2
+     4b2:	6a e0       	ldi	r22, 0x0A	; 10
+     4b4:	70 e0       	ldi	r23, 0x00	; 0
+     4b6:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+Start_Timer(TIMER_3,5000);
+     4ba:	83 e0       	ldi	r24, 0x03	; 3
+     4bc:	68 e8       	ldi	r22, 0x88	; 136
+     4be:	73 e1       	ldi	r23, 0x13	; 19
+     4c0:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+Start_Timer(TIMER_4,100);
+     4c4:	84 e0       	ldi	r24, 0x04	; 4
+     4c6:	64 e6       	ldi	r22, 0x64	; 100
+     4c8:	70 e0       	ldi	r23, 0x00	; 0
+     4ca:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+sei(); // Enable global interrupt
+     4ce:	78 94       	sei
+#if 1		
+if (GetTimer_State(TIMER_0)==TIMER_EXPIRED)
+		{	Sec_Counter++;
+			if (Sec_Counter>'9')
+			{
+			Sec_Counter='0';
+     4d0:	90 e3       	ldi	r25, 0x30	; 48
+     4d2:	f9 2e       	mov	r15, r25
+     4d4:	8a ef       	ldi	r24, 0xFA	; 250
+     4d6:	c8 2e       	mov	r12, r24
+     4d8:	d1 2c       	mov	r13, r1
+     4da:	07 c0       	rjmp	.+14     	; 0x4ea <__stack+0x8b>
+
+
+		}
+
+#endif
+ADC_ReadDisp_All();
+     4dc:	0e 94 49 00 	call	0x92	; 0x92 <ADC_ReadDisp_All>
+//process modbus frame
+
+
+if (GetTimer_State(TIMER_1)==TIMER_EXPIRED)	
+     4e0:	81 e0       	ldi	r24, 0x01	; 1
+     4e2:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+     4e6:	83 30       	cpi	r24, 0x03	; 3
+     4e8:	a1 f1       	breq	.+104    	; 0x552 <__stack+0xf3>
+sei(); // Enable global interrupt
+	    while(1)
+    {
+		
+		
+	if(GetTimer_State(TIMER_2)==TIMER_EXPIRED)
+     4ea:	82 e0       	ldi	r24, 0x02	; 2
+     4ec:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+     4f0:	83 30       	cpi	r24, 0x03	; 3
+     4f2:	09 f4       	brne	.+2      	; 0x4f6 <__stack+0x97>
+     4f4:	62 c0       	rjmp	.+196    	; 0x5ba <__stack+0x15b>
+		//lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 15);
+		//_delay_ms(1);
+		//lcd_write_character_4d(Rx_Char);
+		
+#if 1		
+if (GetTimer_State(TIMER_0)==TIMER_EXPIRED)
+     4f6:	80 e0       	ldi	r24, 0x00	; 0
+     4f8:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+     4fc:	83 30       	cpi	r24, 0x03	; 3
+     4fe:	71 f7       	brne	.-36     	; 0x4dc <__stack+0x7d>
+		{	Sec_Counter++;
+     500:	80 91 70 00 	lds	r24, 0x0070
+     504:	8f 5f       	subi	r24, 0xFF	; 255
+     506:	80 93 70 00 	sts	0x0070, r24
+			if (Sec_Counter>'9')
+     50a:	8a 33       	cpi	r24, 0x3A	; 58
+     50c:	10 f0       	brcs	.+4      	; 0x512 <__stack+0xb3>
+			{
+			Sec_Counter='0';
+     50e:	f0 92 70 00 	sts	0x0070, r15
+			}
+			lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 15);
+     512:	8f e8       	ldi	r24, 0x8F	; 143
+     514:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+			lcd_write_character_4d(Sec_Counter);//Ref1msCounter);
+     518:	80 91 70 00 	lds	r24, 0x0070
+     51c:	0e 94 28 05 	call	0xa50	; 0xa50 <lcd_write_character_4d>
+			Start_Timer(TIMER_0,1000);
+     520:	80 e0       	ldi	r24, 0x00	; 0
+     522:	68 ee       	ldi	r22, 0xE8	; 232
+     524:	73 e0       	ldi	r23, 0x03	; 3
+     526:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+
+			if (GetTimer_State(TIMER_4)==TIMER_RUNNING)
+     52a:	84 e0       	ldi	r24, 0x04	; 4
+     52c:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+     530:	81 30       	cpi	r24, 0x01	; 1
+     532:	09 f4       	brne	.+2      	; 0x536 <__stack+0xd7>
+     534:	4a c0       	rjmp	.+148    	; 0x5ca <__stack+0x16b>
+				lcd_write_string_4d("ONLINE ");
+			}
+			else
+			{
+
+				lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 0);
+     536:	80 e8       	ldi	r24, 0x80	; 128
+     538:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+				lcd_write_string_4d("OFFLINE");
+     53c:	88 e6       	ldi	r24, 0x68	; 104
+     53e:	90 e0       	ldi	r25, 0x00	; 0
+     540:	0e 94 5e 05 	call	0xabc	; 0xabc <lcd_write_string_4d>
+
+
+		}
+
+#endif
+ADC_ReadDisp_All();
+     544:	0e 94 49 00 	call	0x92	; 0x92 <ADC_ReadDisp_All>
+//process modbus frame
+
+
+if (GetTimer_State(TIMER_1)==TIMER_EXPIRED)	
+     548:	81 e0       	ldi	r24, 0x01	; 1
+     54a:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+     54e:	83 30       	cpi	r24, 0x03	; 3
+     550:	61 f6       	brne	.-104    	; 0x4ea <__stack+0x8b>
+{
+	Received_crc_Val = (Mbus_RxBuff[7] <<8) | Mbus_RxBuff[6];
+     552:	20 91 ea 00 	lds	r18, 0x00EA
+     556:	80 91 e9 00 	lds	r24, 0x00E9
+     55a:	12 2f       	mov	r17, r18
+     55c:	00 e0       	ldi	r16, 0x00	; 0
+     55e:	90 e0       	ldi	r25, 0x00	; 0
+     560:	80 2b       	or	r24, r16
+     562:	91 2b       	or	r25, r17
+     564:	90 93 b4 00 	sts	0x00B4, r25
+     568:	80 93 b3 00 	sts	0x00B3, r24
+	Calculated_crc_Val= get_crc16(Mbus_RxBuff,6);
+     56c:	83 ee       	ldi	r24, 0xE3	; 227
+     56e:	90 e0       	ldi	r25, 0x00	; 0
+     570:	66 e0       	ldi	r22, 0x06	; 6
+     572:	0e 94 b4 03 	call	0x768	; 0x768 <get_crc16>
+     576:	ac 01       	movw	r20, r24
+     578:	90 93 b6 00 	sts	0x00B6, r25
+     57c:	80 93 b5 00 	sts	0x00B5, r24
+	MB_Requested_Length = (Mbus_RxBuff[4] <<8) | Mbus_RxBuff[5];
+     580:	80 91 e7 00 	lds	r24, 0x00E7
+     584:	90 91 e8 00 	lds	r25, 0x00E8
+     588:	d8 2f       	mov	r29, r24
+     58a:	c0 e0       	ldi	r28, 0x00	; 0
+     58c:	29 2f       	mov	r18, r25
+     58e:	30 e0       	ldi	r19, 0x00	; 0
+     590:	2c 2b       	or	r18, r28
+     592:	3d 2b       	or	r19, r29
+     594:	30 93 b8 00 	sts	0x00B8, r19
+     598:	20 93 b7 00 	sts	0x00B7, r18
+	if((Mbus_RxBuff[0]==MODBUS_SLAVE_ID) && (Received_crc_Val ==Calculated_crc_Val)&&(MB_Requested_Length==2))
+     59c:	60 91 e3 00 	lds	r22, 0x00E3
+     5a0:	61 30       	cpi	r22, 0x01	; 1
+     5a2:	d9 f0       	breq	.+54     	; 0x5da <__stack+0x17b>
+	}
+	else
+	{
+		//Uart_TxChar(0xFF);//Error
+	}
+	Mbus_RxBuff_Counter=0;
+     5a4:	10 92 bd 00 	sts	0x00BD, r1
+Stop_Timer(TIMER_1);
+     5a8:	81 e0       	ldi	r24, 0x01	; 1
+     5aa:	0e 94 f8 07 	call	0xff0	; 0xff0 <Stop_Timer>
+sei(); // Enable global interrupt
+	    while(1)
+    {
+		
+		
+	if(GetTimer_State(TIMER_2)==TIMER_EXPIRED)
+     5ae:	82 e0       	ldi	r24, 0x02	; 2
+     5b0:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+     5b4:	83 30       	cpi	r24, 0x03	; 3
+     5b6:	09 f0       	breq	.+2      	; 0x5ba <__stack+0x15b>
+     5b8:	9e cf       	rjmp	.-196    	; 0x4f6 <__stack+0x97>
+	{
+	
+	switch_service();
+     5ba:	0e 94 0e 08 	call	0x101c	; 0x101c <switch_service>
+	Start_Timer(TIMER_2,10);
+     5be:	82 e0       	ldi	r24, 0x02	; 2
+     5c0:	6a e0       	ldi	r22, 0x0A	; 10
+     5c2:	70 e0       	ldi	r23, 0x00	; 0
+     5c4:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+     5c8:	96 cf       	rjmp	.-212    	; 0x4f6 <__stack+0x97>
+			lcd_write_character_4d(Sec_Counter);//Ref1msCounter);
+			Start_Timer(TIMER_0,1000);
+
+			if (GetTimer_State(TIMER_4)==TIMER_RUNNING)
+			{
+				lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 0);
+     5ca:	80 e8       	ldi	r24, 0x80	; 128
+     5cc:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+				lcd_write_string_4d("ONLINE ");
+     5d0:	80 e6       	ldi	r24, 0x60	; 96
+     5d2:	90 e0       	ldi	r25, 0x00	; 0
+     5d4:	0e 94 5e 05 	call	0xabc	; 0xabc <lcd_write_string_4d>
+     5d8:	81 cf       	rjmp	.-254    	; 0x4dc <__stack+0x7d>
+if (GetTimer_State(TIMER_1)==TIMER_EXPIRED)	
+{
+	Received_crc_Val = (Mbus_RxBuff[7] <<8) | Mbus_RxBuff[6];
+	Calculated_crc_Val= get_crc16(Mbus_RxBuff,6);
+	MB_Requested_Length = (Mbus_RxBuff[4] <<8) | Mbus_RxBuff[5];
+	if((Mbus_RxBuff[0]==MODBUS_SLAVE_ID) && (Received_crc_Val ==Calculated_crc_Val)&&(MB_Requested_Length==2))
+     5da:	80 91 b3 00 	lds	r24, 0x00B3
+     5de:	90 91 b4 00 	lds	r25, 0x00B4
+     5e2:	48 17       	cp	r20, r24
+     5e4:	59 07       	cpc	r21, r25
+     5e6:	f1 f6       	brne	.-68     	; 0x5a4 <__stack+0x145>
+     5e8:	22 30       	cpi	r18, 0x02	; 2
+     5ea:	31 05       	cpc	r19, r1
+     5ec:	d9 f6       	brne	.-74     	; 0x5a4 <__stack+0x145>
+	
+	{	
+		
+		
+		Modbus_TxBuff[0]=MODBUS_SLAVE_ID;
+     5ee:	60 93 c6 00 	sts	0x00C6, r22
+		Modbus_TxBuff[1]=Mbus_RxBuff[1];
+     5f2:	80 91 e4 00 	lds	r24, 0x00E4
+     5f6:	80 93 c7 00 	sts	0x00C7, r24
+		Modbus_TxBuff[2]=4;//Length
+     5fa:	84 e0       	ldi	r24, 0x04	; 4
+     5fc:	80 93 c8 00 	sts	0x00C8, r24
+		Modbus_TxBuff[3]=0;//Data high1
+     600:	10 92 c9 00 	sts	0x00C9, r1
+		Modbus_TxBuff[4]=ADC_Debounce_State;//data low1
+     604:	80 91 da 00 	lds	r24, 0x00DA
+     608:	80 93 ca 00 	sts	0x00CA, r24
+		Modbus_TxBuff[5]=0;//data high 2
+     60c:	10 92 cb 00 	sts	0x00CB, r1
+		Modbus_TxBuff[6]=Get_Switch_Status();
+     610:	0e 94 0b 08 	call	0x1016	; 0x1016 <Get_Switch_Status>
+     614:	80 93 cc 00 	sts	0x00CC, r24
+		
+		Calculated_crc_Val= get_crc16(Modbus_TxBuff,7);
+     618:	86 ec       	ldi	r24, 0xC6	; 198
+     61a:	90 e0       	ldi	r25, 0x00	; 0
+     61c:	67 e0       	ldi	r22, 0x07	; 7
+     61e:	0e 94 b4 03 	call	0x768	; 0x768 <get_crc16>
+     622:	80 93 b5 00 	sts	0x00B5, r24
+     626:	90 93 b6 00 	sts	0x00B6, r25
+		Modbus_TxBuff[7]=Calculated_crc_Val;
+     62a:	80 93 cd 00 	sts	0x00CD, r24
+		Modbus_TxBuff[8]=Calculated_crc_Val>>8;
+     62e:	90 93 ce 00 	sts	0x00CE, r25
+		
+		MB_TX_ENABLE();
+     632:	c7 9a       	sbi	0x18, 7	; 24
+     634:	c6 01       	movw	r24, r12
+     636:	01 97       	sbiw	r24, 0x01	; 1
+     638:	f1 f7       	brne	.-4      	; 0x636 <__stack+0x1d7>
+		_delay_ms(1);
+		for(i=0;i<9;i++)
+     63a:	10 92 c5 00 	sts	0x00C5, r1
+     63e:	e0 e0       	ldi	r30, 0x00	; 0
+		{
+		Uart_TxChar(Modbus_TxBuff[i]);
+     640:	f0 e0       	ldi	r31, 0x00	; 0
+     642:	ea 53       	subi	r30, 0x3A	; 58
+     644:	ff 4f       	sbci	r31, 0xFF	; 255
+     646:	80 81       	ld	r24, Z
+     648:	0e 94 ac 03 	call	0x758	; 0x758 <Uart_TxChar>
+		Modbus_TxBuff[7]=Calculated_crc_Val;
+		Modbus_TxBuff[8]=Calculated_crc_Val>>8;
+		
+		MB_TX_ENABLE();
+		_delay_ms(1);
+		for(i=0;i<9;i++)
+     64c:	e0 91 c5 00 	lds	r30, 0x00C5
+     650:	ef 5f       	subi	r30, 0xFF	; 255
+     652:	e0 93 c5 00 	sts	0x00C5, r30
+     656:	e9 30       	cpi	r30, 0x09	; 9
+     658:	98 f3       	brcs	.-26     	; 0x640 <__stack+0x1e1>
+     65a:	c6 01       	movw	r24, r12
+     65c:	01 97       	sbiw	r24, 0x01	; 1
+     65e:	f1 f7       	brne	.-4      	; 0x65c <__stack+0x1fd>
+		{
+		Uart_TxChar(Modbus_TxBuff[i]);
+		}
+		_delay_ms(1);
+		MB_RX_ENABLE();
+     660:	c7 98       	cbi	0x18, 7	; 24
+
+		Start_Timer(TIMER_4,3000);
+     662:	84 e0       	ldi	r24, 0x04	; 4
+     664:	68 eb       	ldi	r22, 0xB8	; 184
+     666:	7b e0       	ldi	r23, 0x0B	; 11
+     668:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+     66c:	9b cf       	rjmp	.-202    	; 0x5a4 <__stack+0x145>
+
+0000066e <InitTimer0>:
+volatile unsigned int SWTimer_Ref1msCounter=0;
+void InitTimer0(void)
+
+{
+	//init timer0
+	TCCR0= 2;//0x03;
+     66e:	82 e0       	ldi	r24, 0x02	; 2
+     670:	83 bf       	out	0x33, r24	; 51
+	TCNT0=131;//83;
+     672:	83 e8       	ldi	r24, 0x83	; 131
+     674:	82 bf       	out	0x32, r24	; 50
+	OCR0=0;
+     676:	1c be       	out	0x3c, r1	; 60
+	TIMSK=1;
+     678:	81 e0       	ldi	r24, 0x01	; 1
+     67a:	89 bf       	out	0x39, r24	; 57
+	
+	
+	
+}
+     67c:	08 95       	ret
+
+0000067e <__vector_9>:
+
+
+ISR (TIMER0_OVF_vect) // 1ms ISR
+{
+     67e:	1f 92       	push	r1
+     680:	0f 92       	push	r0
+     682:	0f b6       	in	r0, 0x3f	; 63
+     684:	0f 92       	push	r0
+     686:	11 24       	eor	r1, r1
+     688:	8f 93       	push	r24
+     68a:	9f 93       	push	r25
+	//Ref1msCounter++;
+	Ref1msCounter++;
+     68c:	80 91 b9 00 	lds	r24, 0x00B9
+     690:	90 91 ba 00 	lds	r25, 0x00BA
+     694:	01 96       	adiw	r24, 0x01	; 1
+     696:	90 93 ba 00 	sts	0x00BA, r25
+     69a:	80 93 b9 00 	sts	0x00B9, r24
+	SWTimer_Ref1msCounter++;
+     69e:	80 91 bb 00 	lds	r24, 0x00BB
+     6a2:	90 91 bc 00 	lds	r25, 0x00BC
+     6a6:	01 96       	adiw	r24, 0x01	; 1
+     6a8:	90 93 bc 00 	sts	0x00BC, r25
+     6ac:	80 93 bb 00 	sts	0x00BB, r24
+	TCNT0=131;//83; // reload timer value
+     6b0:	83 e8       	ldi	r24, 0x83	; 131
+     6b2:	82 bf       	out	0x32, r24	; 50
+	
+}
+     6b4:	9f 91       	pop	r25
+     6b6:	8f 91       	pop	r24
+     6b8:	0f 90       	pop	r0
+     6ba:	0f be       	out	0x3f, r0	; 63
+     6bc:	0f 90       	pop	r0
+     6be:	1f 90       	pop	r1
+     6c0:	18 95       	reti
+
+000006c2 <RTC_init>:
+
+
+void RTC_init(void)
+{
+	uint8_t sreg;/* Save status register and disable global interrupts */
+	sreg=SREG;
+     6c2:	6f b7       	in	r22, 0x3f	; 63
+	cli();	/* 0. Oscillator might take as long as one second to stabilize. */
+     6c4:	f8 94       	cli
+     6c6:	20 e0       	ldi	r18, 0x00	; 0
+     6c8:	30 e0       	ldi	r19, 0x00	; 0
+     6ca:	49 e1       	ldi	r20, 0x19	; 25
+     6cc:	50 e0       	ldi	r21, 0x00	; 0
+     6ce:	ca 01       	movw	r24, r20
+     6d0:	01 97       	sbiw	r24, 0x01	; 1
+     6d2:	f1 f7       	brne	.-4      	; 0x6d0 <RTC_init+0xe>
+     6d4:	2f 5f       	subi	r18, 0xFF	; 255
+     6d6:	3f 4f       	sbci	r19, 0xFF	; 255
+     6d8:	87 e2       	ldi	r24, 0x27	; 39
+     6da:	20 31       	cpi	r18, 0x10	; 16
+     6dc:	38 07       	cpc	r19, r24
+     6de:	b9 f7       	brne	.-18     	; 0x6ce <RTC_init+0xc>
+	_delay_ms(1000);	/* 1. Disable the Timer/Counter2 interrupts by clearing OCIE2 and TOIE2. */
+	TIMSK &= ~((1<<OCIE2)|(1<<TOIE2));	/* 2. Select clock source by setting AS2 as appropriate. */
+     6e0:	89 b7       	in	r24, 0x39	; 57
+     6e2:	8f 73       	andi	r24, 0x3F	; 63
+     6e4:	89 bf       	out	0x39, r24	; 57
+	ASSR = (1<<AS2);	/* 3. Write new values to TCNT2, OCR2, and TCCR2. */
+     6e6:	88 e0       	ldi	r24, 0x08	; 8
+     6e8:	82 bd       	out	0x22, r24	; 34
+	TCNT2 =215;	// clear TCNT2A	// select precaler: 32.768 kHz / 128 = 1 sec between each overflow:
+     6ea:	87 ed       	ldi	r24, 0xD7	; 215
+     6ec:	84 bd       	out	0x24, r24	; 36
+	TCCR2 = (1<<CS20);	/* 4. To switch to asynchronous operation: Wait for TCN2UB, OCR2UB, and
+     6ee:	81 e0       	ldi	r24, 0x01	; 1
+     6f0:	85 bd       	out	0x25, r24	; 37
+	TCR2UB. */
+	while( (ASSR & (1<<TCN2UB)) | (ASSR & (1<<OCR2UB)) |
+     6f2:	82 b5       	in	r24, 0x22	; 34
+     6f4:	22 b5       	in	r18, 0x22	; 34
+     6f6:	42 b5       	in	r20, 0x22	; 34
+     6f8:	30 e0       	ldi	r19, 0x00	; 0
+     6fa:	22 70       	andi	r18, 0x02	; 2
+     6fc:	30 70       	andi	r19, 0x00	; 0
+     6fe:	90 e0       	ldi	r25, 0x00	; 0
+     700:	84 70       	andi	r24, 0x04	; 4
+     702:	90 70       	andi	r25, 0x00	; 0
+     704:	28 2b       	or	r18, r24
+     706:	39 2b       	or	r19, r25
+     708:	50 e0       	ldi	r21, 0x00	; 0
+     70a:	41 70       	andi	r20, 0x01	; 1
+     70c:	50 70       	andi	r21, 0x00	; 0
+     70e:	24 2b       	or	r18, r20
+     710:	35 2b       	or	r19, r21
+     712:	23 2b       	or	r18, r19
+     714:	71 f7       	brne	.-36     	; 0x6f2 <RTC_init+0x30>
+		(ASSR & (1<<TCR2UB)) ); 
+	
+	/* 5. Clear the Timer/Counter2 Interrupt Flags. */
+	TIFR |= ((1<<OCF2)|(1<<TOV2));
+     716:	88 b7       	in	r24, 0x38	; 56
+     718:	80 6c       	ori	r24, 0xC0	; 192
+     71a:	88 bf       	out	0x38, r24	; 56
+	
+	/* 6. enable Timer2 Overflow interrupt */
+	TIMSK |= (1<<TOIE2);
+     71c:	89 b7       	in	r24, 0x39	; 57
+     71e:	80 64       	ori	r24, 0x40	; 64
+     720:	89 bf       	out	0x39, r24	; 57
+    
+	/* initial values */
+
+
+	/* restore status-register */
+	SREG=sreg;
+     722:	6f bf       	out	0x3f, r22	; 63
+	//Ref1msCounter='1';
+}
+     724:	08 95       	ret
+
+00000726 <__vector_4>:
+
+ISR(TIMER2_OVF_vect)//interrupt every 1ms
+{
+     726:	1f 92       	push	r1
+     728:	0f 92       	push	r0
+     72a:	0f b6       	in	r0, 0x3f	; 63
+     72c:	0f 92       	push	r0
+     72e:	11 24       	eor	r1, r1
+     730:	8f 93       	push	r24
+TCNT2 =215;
+     732:	87 ed       	ldi	r24, 0xD7	; 215
+     734:	84 bd       	out	0x24, r24	; 36
+//Ref1msCounter++;
+//SWTimer_Ref1msCounter++;
+
+}
+     736:	8f 91       	pop	r24
+     738:	0f 90       	pop	r0
+     73a:	0f be       	out	0x3f, r0	; 63
+     73c:	0f 90       	pop	r0
+     73e:	1f 90       	pop	r1
+     740:	18 95       	reti
+
+00000742 <Uart_init>:
+volatile uint8_t Mbus_RxBuff_Counter=0;
+
+void Uart_init(unsigned int ubrr_value)
+{
+
+	DDRD =1;
+     742:	21 e0       	ldi	r18, 0x01	; 1
+     744:	21 bb       	out	0x11, r18	; 17
+	  		 //Set Baud rate
+  		 UBRRL = ubrr_value;
+     746:	89 b9       	out	0x09, r24	; 9
+  		 UBRRH = (ubrr_value>>8);
+     748:	90 bd       	out	0x20, r25	; 32
+  		 >> Asynchronous mode
+  		 >> No Parity
+  		 >> 1 StopBit
+  		 >> char size 8
+  		 */
+  		UCSRA= (1<<U2X);
+     74a:	82 e0       	ldi	r24, 0x02	; 2
+     74c:	8b b9       	out	0x0b, r24	; 11
+		 UCSRC=(1<<URSEL)|(1<<UCSZ0)|(1<<UCSZ1);
+     74e:	86 e8       	ldi	r24, 0x86	; 134
+     750:	80 bd       	out	0x20, r24	; 32
+  		 //Enable The receiver and transmitter
+  		 UCSRB=(1<<RXEN)|(1<<TXEN)|(1 << RXCIE);
+     752:	88 e9       	ldi	r24, 0x98	; 152
+     754:	8a b9       	out	0x0a, r24	; 10
+		// 	UCSR1B |= ; // Enable the USART Recieve Complete interrupt 
+	
+	
+}
+     756:	08 95       	ret
+
+00000758 <Uart_TxChar>:
+
+void Uart_TxChar( unsigned char data)
+{
+	//Wait untill the transmitter is ready
+
+   		while(!(UCSRA & (1<<UDRE)));
+     758:	5d 9b       	sbis	0x0b, 5	; 11
+     75a:	fe cf       	rjmp	.-4      	; 0x758 <Uart_TxChar>
+   		//Now write the data to USART buffer
+   		UDR=data;
+     75c:	8c b9       	out	0x0c, r24	; 12
+}
+     75e:	08 95       	ret
+
+00000760 <Uart_RcChar>:
+
+unsigned char Uart_RcChar(void)
+{
+	while(!(UCSRA & (1<<RXC)));
+     760:	5f 9b       	sbis	0x0b, 7	; 11
+     762:	fe cf       	rjmp	.-4      	; 0x760 <Uart_RcChar>
+   
+
+   		//Now USART has got data from host
+   		//and is available is buffer
+
+  		 return UDR;
+     764:	8c b1       	in	r24, 0x0c	; 12
+}
+     766:	08 95       	ret
+
+00000768 <get_crc16>:
+Start_Timer(TIMER_1,MODBUS_FRAME_TIMEOUT_PERIOD);
+}		
+
+//crc
+uint16_t get_crc16(uint8_t *buff,uint8_t len)
+{
+     768:	78 2f       	mov	r23, r24
+uint16_t creg;
+uint8_t t1,t2;
+creg=0xffff;//initial value
+for(t1=0;t1<len;t1++)
+     76a:	66 23       	and	r22, r22
+     76c:	09 f4       	brne	.+2      	; 0x770 <get_crc16+0x8>
+     76e:	90 c0       	rjmp	.+288    	; 0x890 <get_crc16+0x128>
+     770:	9c 01       	movw	r18, r24
+     772:	d9 01       	movw	r26, r18
+     774:	2f ef       	ldi	r18, 0xFF	; 255
+     776:	3f ef       	ldi	r19, 0xFF	; 255
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+			creg^=poly;
+     778:	e1 e0       	ldi	r30, 0x01	; 1
+     77a:	f0 ea       	ldi	r31, 0xA0	; 160
+     77c:	45 c0       	rjmp	.+138    	; 0x808 <get_crc16+0xa0>
+     77e:	ca 01       	movw	r24, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     780:	9c 01       	movw	r18, r24
+     782:	36 95       	lsr	r19
+     784:	27 95       	ror	r18
+			creg^=poly;
+     786:	a9 01       	movw	r20, r18
+     788:	4e 27       	eor	r20, r30
+     78a:	5f 27       	eor	r21, r31
+     78c:	80 ff       	sbrs	r24, 0
+     78e:	51 c0       	rjmp	.+162    	; 0x832 <get_crc16+0xca>
+     790:	ca 01       	movw	r24, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     792:	9c 01       	movw	r18, r24
+     794:	36 95       	lsr	r19
+     796:	27 95       	ror	r18
+			creg^=poly;
+     798:	a9 01       	movw	r20, r18
+     79a:	4e 27       	eor	r20, r30
+     79c:	5f 27       	eor	r21, r31
+     79e:	80 ff       	sbrs	r24, 0
+     7a0:	51 c0       	rjmp	.+162    	; 0x844 <get_crc16+0xdc>
+     7a2:	ca 01       	movw	r24, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     7a4:	9c 01       	movw	r18, r24
+     7a6:	36 95       	lsr	r19
+     7a8:	27 95       	ror	r18
+			creg^=poly;
+     7aa:	a9 01       	movw	r20, r18
+     7ac:	4e 27       	eor	r20, r30
+     7ae:	5f 27       	eor	r21, r31
+     7b0:	80 ff       	sbrs	r24, 0
+     7b2:	51 c0       	rjmp	.+162    	; 0x856 <get_crc16+0xee>
+     7b4:	ca 01       	movw	r24, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     7b6:	9c 01       	movw	r18, r24
+     7b8:	36 95       	lsr	r19
+     7ba:	27 95       	ror	r18
+			creg^=poly;
+     7bc:	a9 01       	movw	r20, r18
+     7be:	4e 27       	eor	r20, r30
+     7c0:	5f 27       	eor	r21, r31
+     7c2:	80 ff       	sbrs	r24, 0
+     7c4:	51 c0       	rjmp	.+162    	; 0x868 <get_crc16+0x100>
+     7c6:	ca 01       	movw	r24, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     7c8:	9c 01       	movw	r18, r24
+     7ca:	36 95       	lsr	r19
+     7cc:	27 95       	ror	r18
+			creg^=poly;
+     7ce:	a9 01       	movw	r20, r18
+     7d0:	4e 27       	eor	r20, r30
+     7d2:	5f 27       	eor	r21, r31
+     7d4:	80 ff       	sbrs	r24, 0
+     7d6:	51 c0       	rjmp	.+162    	; 0x87a <get_crc16+0x112>
+     7d8:	ca 01       	movw	r24, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     7da:	9c 01       	movw	r18, r24
+     7dc:	36 95       	lsr	r19
+     7de:	27 95       	ror	r18
+			creg^=poly;
+     7e0:	a9 01       	movw	r20, r18
+     7e2:	4e 27       	eor	r20, r30
+     7e4:	5f 27       	eor	r21, r31
+     7e6:	80 fd       	sbrc	r24, 0
+     7e8:	9a 01       	movw	r18, r20
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     7ea:	c9 01       	movw	r24, r18
+     7ec:	96 95       	lsr	r25
+     7ee:	87 95       	ror	r24
+			creg^=poly;
+     7f0:	ac 01       	movw	r20, r24
+     7f2:	4e 27       	eor	r20, r30
+     7f4:	5f 27       	eor	r21, r31
+     7f6:	20 ff       	sbrs	r18, 0
+     7f8:	42 c0       	rjmp	.+132    	; 0x87e <get_crc16+0x116>
+     7fa:	9a 01       	movw	r18, r20
+     7fc:	11 96       	adiw	r26, 0x01	; 1
+uint16_t get_crc16(uint8_t *buff,uint8_t len)
+{
+uint16_t creg;
+uint8_t t1,t2;
+creg=0xffff;//initial value
+for(t1=0;t1<len;t1++)
+     7fe:	8a 2f       	mov	r24, r26
+     800:	87 1b       	sub	r24, r23
+     802:	86 17       	cp	r24, r22
+     804:	08 f0       	brcs	.+2      	; 0x808 <get_crc16+0xa0>
+     806:	42 c0       	rjmp	.+132    	; 0x88c <get_crc16+0x124>
+{
+	creg^=buff[t1];
+     808:	8c 91       	ld	r24, X
+     80a:	90 e0       	ldi	r25, 0x00	; 0
+     80c:	82 27       	eor	r24, r18
+     80e:	93 27       	eor	r25, r19
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     810:	9c 01       	movw	r18, r24
+     812:	36 95       	lsr	r19
+     814:	27 95       	ror	r18
+			creg^=poly;
+     816:	a9 01       	movw	r20, r18
+     818:	4e 27       	eor	r20, r30
+     81a:	5f 27       	eor	r21, r31
+     81c:	80 fd       	sbrc	r24, 0
+     81e:	af cf       	rjmp	.-162    	; 0x77e <get_crc16+0x16>
+     820:	c9 01       	movw	r24, r18
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     822:	9c 01       	movw	r18, r24
+     824:	36 95       	lsr	r19
+     826:	27 95       	ror	r18
+			creg^=poly;
+     828:	a9 01       	movw	r20, r18
+     82a:	4e 27       	eor	r20, r30
+     82c:	5f 27       	eor	r21, r31
+     82e:	80 fd       	sbrc	r24, 0
+     830:	af cf       	rjmp	.-162    	; 0x790 <get_crc16+0x28>
+     832:	c9 01       	movw	r24, r18
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     834:	9c 01       	movw	r18, r24
+     836:	36 95       	lsr	r19
+     838:	27 95       	ror	r18
+			creg^=poly;
+     83a:	a9 01       	movw	r20, r18
+     83c:	4e 27       	eor	r20, r30
+     83e:	5f 27       	eor	r21, r31
+     840:	80 fd       	sbrc	r24, 0
+     842:	af cf       	rjmp	.-162    	; 0x7a2 <get_crc16+0x3a>
+     844:	c9 01       	movw	r24, r18
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     846:	9c 01       	movw	r18, r24
+     848:	36 95       	lsr	r19
+     84a:	27 95       	ror	r18
+			creg^=poly;
+     84c:	a9 01       	movw	r20, r18
+     84e:	4e 27       	eor	r20, r30
+     850:	5f 27       	eor	r21, r31
+     852:	80 fd       	sbrc	r24, 0
+     854:	af cf       	rjmp	.-162    	; 0x7b4 <get_crc16+0x4c>
+     856:	c9 01       	movw	r24, r18
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     858:	9c 01       	movw	r18, r24
+     85a:	36 95       	lsr	r19
+     85c:	27 95       	ror	r18
+			creg^=poly;
+     85e:	a9 01       	movw	r20, r18
+     860:	4e 27       	eor	r20, r30
+     862:	5f 27       	eor	r21, r31
+     864:	80 fd       	sbrc	r24, 0
+     866:	af cf       	rjmp	.-162    	; 0x7c6 <get_crc16+0x5e>
+     868:	c9 01       	movw	r24, r18
+	creg^=buff[t1];
+	for(t2=1;t2<9;t2++)
+	{
+		if((creg%2))// if lsb==1
+		{
+			creg>>=1;
+     86a:	9c 01       	movw	r18, r24
+     86c:	36 95       	lsr	r19
+     86e:	27 95       	ror	r18
+			creg^=poly;
+     870:	a9 01       	movw	r20, r18
+     872:	4e 27       	eor	r20, r30
+     874:	5f 27       	eor	r21, r31
+     876:	80 fd       	sbrc	r24, 0
+     878:	af cf       	rjmp	.-162    	; 0x7d8 <get_crc16+0x70>
+     87a:	c9 01       	movw	r24, r18
+     87c:	ae cf       	rjmp	.-164    	; 0x7da <get_crc16+0x72>
+     87e:	9c 01       	movw	r18, r24
+     880:	11 96       	adiw	r26, 0x01	; 1
+uint16_t get_crc16(uint8_t *buff,uint8_t len)
+{
+uint16_t creg;
+uint8_t t1,t2;
+creg=0xffff;//initial value
+for(t1=0;t1<len;t1++)
+     882:	8a 2f       	mov	r24, r26
+     884:	87 1b       	sub	r24, r23
+     886:	86 17       	cp	r24, r22
+     888:	08 f4       	brcc	.+2      	; 0x88c <get_crc16+0x124>
+     88a:	be cf       	rjmp	.-132    	; 0x808 <get_crc16+0xa0>
+	} 
+}
+
+return creg;
+
+}
+     88c:	c9 01       	movw	r24, r18
+     88e:	08 95       	ret
+uint16_t get_crc16(uint8_t *buff,uint8_t len)
+{
+uint16_t creg;
+uint8_t t1,t2;
+creg=0xffff;//initial value
+for(t1=0;t1<len;t1++)
+     890:	2f ef       	ldi	r18, 0xFF	; 255
+     892:	3f ef       	ldi	r19, 0xFF	; 255
+     894:	fb cf       	rjmp	.-10     	; 0x88c <get_crc16+0x124>
+
+00000896 <__vector_11>:
+}
+
+
+//SIGNAL (SIG_UART_RECV) 
+ISR(USART_RXC_vect)
+{ // USART RX interrupt
+     896:	1f 92       	push	r1
+     898:	0f 92       	push	r0
+     89a:	0f b6       	in	r0, 0x3f	; 63
+     89c:	0f 92       	push	r0
+     89e:	11 24       	eor	r1, r1
+     8a0:	2f 93       	push	r18
+     8a2:	3f 93       	push	r19
+     8a4:	4f 93       	push	r20
+     8a6:	5f 93       	push	r21
+     8a8:	6f 93       	push	r22
+     8aa:	7f 93       	push	r23
+     8ac:	8f 93       	push	r24
+     8ae:	9f 93       	push	r25
+     8b0:	af 93       	push	r26
+     8b2:	bf 93       	push	r27
+     8b4:	ef 93       	push	r30
+     8b6:	ff 93       	push	r31
+	unsigned char c;
+	//Rx_Char=UDR;
+	c = UDR;
+     8b8:	9c b1       	in	r25, 0x0c	; 12
+	Rx_Char=c;
+     8ba:	90 93 71 00 	sts	0x0071, r25
+	//lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 0);
+	//lcd_write_character_4d(UDR+1);
+//Uart_TxChar(c+1);
+//Uart_TxChar('1');
+//reti();
+if(Mbus_RxBuff_Counter <Mbus_RxBuff_SIZE)
+     8be:	80 91 bd 00 	lds	r24, 0x00BD
+     8c2:	8a 30       	cpi	r24, 0x0A	; 10
+     8c4:	50 f4       	brcc	.+20     	; 0x8da <__vector_11+0x44>
+{ 
+	Mbus_RxBuff[Mbus_RxBuff_Counter++]=c;
+     8c6:	80 91 bd 00 	lds	r24, 0x00BD
+     8ca:	e8 2f       	mov	r30, r24
+     8cc:	f0 e0       	ldi	r31, 0x00	; 0
+     8ce:	ed 51       	subi	r30, 0x1D	; 29
+     8d0:	ff 4f       	sbci	r31, 0xFF	; 255
+     8d2:	90 83       	st	Z, r25
+     8d4:	8f 5f       	subi	r24, 0xFF	; 255
+     8d6:	80 93 bd 00 	sts	0x00BD, r24
+}
+
+Start_Timer(TIMER_1,MODBUS_FRAME_TIMEOUT_PERIOD);
+     8da:	81 e0       	ldi	r24, 0x01	; 1
+     8dc:	64 e1       	ldi	r22, 0x14	; 20
+     8de:	70 e0       	ldi	r23, 0x00	; 0
+     8e0:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+}		
+     8e4:	ff 91       	pop	r31
+     8e6:	ef 91       	pop	r30
+     8e8:	bf 91       	pop	r27
+     8ea:	af 91       	pop	r26
+     8ec:	9f 91       	pop	r25
+     8ee:	8f 91       	pop	r24
+     8f0:	7f 91       	pop	r23
+     8f2:	6f 91       	pop	r22
+     8f4:	5f 91       	pop	r21
+     8f6:	4f 91       	pop	r20
+     8f8:	3f 91       	pop	r19
+     8fa:	2f 91       	pop	r18
+     8fc:	0f 90       	pop	r0
+     8fe:	0f be       	out	0x3f, r0	; 63
+     900:	0f 90       	pop	r0
+     902:	1f 90       	pop	r1
+     904:	18 95       	reti
+
+00000906 <ADC_init>:
+
+void ADC_init(void)
+{
+//DDRA = 0x00;//All Inputs
+//PORTA=0x00;
+ADMUX =0;
+     906:	17 b8       	out	0x07, r1	; 7
+ADCSRA = (1<<ADEN)|(1<<ADPS2);
+     908:	84 e8       	ldi	r24, 0x84	; 132
+     90a:	86 b9       	out	0x06, r24	; 6
+
+}
+     90c:	08 95       	ret
+
+0000090e <ADC_Read_CH>:
+
+uint16_t ADC_Read_CH(uint8_t channelNo)
+{
+
+
+ADMUX = (ADMUX & 0xF8)|channelNo; // clears the bottom 3 bits before ORing
+     90e:	97 b1       	in	r25, 0x07	; 7
+     910:	98 7f       	andi	r25, 0xF8	; 248
+     912:	98 2b       	or	r25, r24
+     914:	97 b9       	out	0x07, r25	; 7
+ 
+  // start single convertion
+  // write ’1' to ADSC
+  ADCSRA |= (1<<ADSC);
+     916:	36 9a       	sbi	0x06, 6	; 6
+ 
+  // wait for conversion to complete
+  // ADSC becomes ’0' again
+  // till then, run loop continuously
+  while(ADCSRA & (1<<ADSC));
+     918:	36 99       	sbic	0x06, 6	; 6
+     91a:	fe cf       	rjmp	.-4      	; 0x918 <ADC_Read_CH+0xa>
+ 
+  return (ADC);
+     91c:	24 b1       	in	r18, 0x04	; 4
+     91e:	35 b1       	in	r19, 0x05	; 5
+
+
+}
+     920:	c9 01       	movw	r24, r18
+     922:	08 95       	ret
+
+00000924 <GLCD_Status>:
+
+unsigned char GLCD_Status(void)
+{
+
+
+}
+     924:	08 95       	ret
+
+00000926 <GLCD_delay>:
+		}
+
+	}
+
+return;
+}
+     926:	08 95       	ret
+
+00000928 <GLCD_Data>:
+
+void GLCD_Data(unsigned char data)
+{
+//GLCD_EN_LOW();
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_RW_LOW();
+     928:	db 98       	cbi	0x1b, 3	; 27
+GLCD_RS_HIGH();
+     92a:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_PORT = data;
+     92c:	8b bb       	out	0x1b, r24	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     92e:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_LOW();
+     930:	dc 98       	cbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     932:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_RS_HIGH();
+     934:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_RW_HIGH();
+     936:	db 9a       	sbi	0x1b, 3	; 27
+//GLCD_CS1_LOW();
+//GLCD_CS2_LOW();
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+}
+     938:	08 95       	ret
+
+0000093a <GLCD_Command>:
+
+void GLCD_Command(unsigned char cmd)
+{
+//GLCD_EN_LOW();
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_RW_LOW();
+     93a:	db 98       	cbi	0x1b, 3	; 27
+GLCD_RS_LOW();
+     93c:	da 98       	cbi	0x1b, 2	; 27
+GLCD_PORT = cmd;
+     93e:	8b bb       	out	0x1b, r24	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     940:	dc 9a       	sbi	0x1b, 4	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_LOW();
+     942:	dc 98       	cbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     944:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_RS_HIGH();
+     946:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_RW_HIGH();
+     948:	db 9a       	sbi	0x1b, 3	; 27
+//GLCD_CS1_LOW();
+//GLCD_CS2_LOW();
+GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+}
+     94a:	08 95       	ret
+
+0000094c <GLCD_On>:
+
+
+
+void GLCD_On(void)
+{
+GLCD_CS1_LOW();
+     94c:	dd 98       	cbi	0x1b, 5	; 27
+GLCD_CS2_LOW()
+     94e:	de 98       	cbi	0x1b, 6	; 27
+GLCD_RW_LOW();
+     950:	db 98       	cbi	0x1b, 3	; 27
+GLCD_RS_LOW();
+     952:	da 98       	cbi	0x1b, 2	; 27
+GLCD_PORT = 0x3F;
+     954:	8f e3       	ldi	r24, 0x3F	; 63
+     956:	8b bb       	out	0x1b, r24	; 27
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     958:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_LOW();
+     95a:	dc 98       	cbi	0x1b, 4	; 27
+}
+     95c:	08 95       	ret
+
+0000095e <GLCD_init>:
+
+void GLCD_init(void)
+{
+unsigned char index=0;
+//init ports
+DDRA=0xFF;
+     95e:	8f ef       	ldi	r24, 0xFF	; 255
+     960:	8a bb       	out	0x1a, r24	; 26
+DDRD=0xFC;
+     962:	8c ef       	ldi	r24, 0xFC	; 252
+     964:	81 bb       	out	0x11, r24	; 17
+PORTA=0;
+     966:	1b ba       	out	0x1b, r1	; 27
+PORTD=0;
+     968:	12 ba       	out	0x12, r1	; 18
+
+//init pin states
+GLCD_RS_LOW();
+     96a:	da 98       	cbi	0x1b, 2	; 27
+GLCD_RW_LOW();
+     96c:	db 98       	cbi	0x1b, 3	; 27
+GLCD_EN_HIGH();
+     96e:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_CS1_HIGH();
+     970:	dd 9a       	sbi	0x1b, 5	; 27
+GLCD_CS2_LOW();
+     972:	de 98       	cbi	0x1b, 6	; 27
+GLCD_RST_HIGH();
+     974:	df 9a       	sbi	0x1b, 7	; 27
+
+void GLCD_Command(unsigned char cmd)
+{
+//GLCD_EN_LOW();
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_RW_LOW();
+     976:	db 98       	cbi	0x1b, 3	; 27
+GLCD_RS_LOW();
+     978:	da 98       	cbi	0x1b, 2	; 27
+GLCD_PORT = cmd;
+     97a:	80 e4       	ldi	r24, 0x40	; 64
+     97c:	8b bb       	out	0x1b, r24	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     97e:	dc 9a       	sbi	0x1b, 4	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_LOW();
+     980:	dc 98       	cbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     982:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_RS_HIGH();
+     984:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_RW_HIGH();
+     986:	db 9a       	sbi	0x1b, 3	; 27
+
+void GLCD_Command(unsigned char cmd)
+{
+//GLCD_EN_LOW();
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_RW_LOW();
+     988:	db 98       	cbi	0x1b, 3	; 27
+GLCD_RS_LOW();
+     98a:	da 98       	cbi	0x1b, 2	; 27
+GLCD_PORT = cmd;
+     98c:	88 eb       	ldi	r24, 0xB8	; 184
+     98e:	8b bb       	out	0x1b, r24	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     990:	dc 9a       	sbi	0x1b, 4	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_LOW();
+     992:	dc 98       	cbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     994:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_RS_HIGH();
+     996:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_RW_HIGH();
+     998:	db 9a       	sbi	0x1b, 3	; 27
+     99a:	8f e3       	ldi	r24, 0x3F	; 63
+{
+//GLCD_EN_LOW();
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_RW_LOW();
+GLCD_RS_HIGH();
+GLCD_PORT = data;
+     99c:	9f e0       	ldi	r25, 0x0F	; 15
+
+void GLCD_Data(unsigned char data)
+{
+//GLCD_EN_LOW();
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_RW_LOW();
+     99e:	db 98       	cbi	0x1b, 3	; 27
+GLCD_RS_HIGH();
+     9a0:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_PORT = data;
+     9a2:	9b bb       	out	0x1b, r25	; 27
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     9a4:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_LOW();
+     9a6:	dc 98       	cbi	0x1b, 4	; 27
+GLCD_delay(GLCD_STD_DELAY);
+//GLCD_delay(GLCD_STD_DELAY);
+GLCD_EN_HIGH();
+     9a8:	dc 9a       	sbi	0x1b, 4	; 27
+GLCD_RS_HIGH();
+     9aa:	da 9a       	sbi	0x1b, 2	; 27
+GLCD_RW_HIGH();
+     9ac:	db 9a       	sbi	0x1b, 3	; 27
+     9ae:	81 50       	subi	r24, 0x01	; 1
+     9b0:	b0 f7       	brcc	.-20     	; 0x99e <GLCD_init+0x40>
+{	GLCD_Data(0x0F);
+	//GLCD_delay(GLCD_STD_DELAY);	
+ } 
+//GLCD_CS1_HIGH();
+//GLCD_CS2_HIGH();
+}
+     9b2:	08 95       	ret
+
+000009b4 <lcd_write_4>:
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     9b4:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     9b6:	87 fd       	sbrc	r24, 7
+     9b8:	13 c0       	rjmp	.+38     	; 0x9e0 <lcd_write_4+0x2c>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     9ba:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     9bc:	86 fd       	sbrc	r24, 6
+     9be:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     9c0:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     9c2:	85 fd       	sbrc	r24, 5
+     9c4:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     9c6:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     9c8:	84 fd       	sbrc	r24, 4
+     9ca:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     9cc:	93 9a       	sbi	0x12, 3	; 18
+     9ce:	8a ef       	ldi	r24, 0xFA	; 250
+     9d0:	90 e0       	ldi	r25, 0x00	; 0
+     9d2:	fc 01       	movw	r30, r24
+     9d4:	31 97       	sbiw	r30, 0x01	; 1
+     9d6:	f1 f7       	brne	.-4      	; 0x9d4 <lcd_write_4+0x20>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     9d8:	93 98       	cbi	0x12, 3	; 18
+     9da:	01 97       	sbiw	r24, 0x01	; 1
+     9dc:	f1 f7       	brne	.-4      	; 0x9da <lcd_write_4+0x26>
+    _delay_ms(1);                                   // implement 'Data hold time' (10 nS) and 'Enable cycle time' (500 nS)
+}
+     9de:	08 95       	ret
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     9e0:	97 9a       	sbi	0x12, 7	; 18
+     9e2:	eb cf       	rjmp	.-42     	; 0x9ba <lcd_write_4+0x6>
+
+000009e4 <lcd_write_instruction_4d>:
+  Entry:    (theInstruction) is the information to be sent to the instruction register
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+     9e4:	28 2f       	mov	r18, r24
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     9e6:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     9e8:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     9ea:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     9ec:	87 fd       	sbrc	r24, 7
+     9ee:	2c c0       	rjmp	.+88     	; 0xa48 <lcd_write_instruction_4d+0x64>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     9f0:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     9f2:	82 2f       	mov	r24, r18
+     9f4:	26 fd       	sbrc	r18, 6
+     9f6:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     9f8:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     9fa:	85 fd       	sbrc	r24, 5
+     9fc:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     9fe:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     a00:	84 fd       	sbrc	r24, 4
+     a02:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     a04:	93 9a       	sbi	0x12, 3	; 18
+     a06:	8a ef       	ldi	r24, 0xFA	; 250
+     a08:	90 e0       	ldi	r25, 0x00	; 0
+     a0a:	fc 01       	movw	r30, r24
+     a0c:	31 97       	sbiw	r30, 0x01	; 1
+     a0e:	f1 f7       	brne	.-4      	; 0xa0c <lcd_write_instruction_4d+0x28>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     a10:	93 98       	cbi	0x12, 3	; 18
+     a12:	01 97       	sbiw	r24, 0x01	; 1
+     a14:	f1 f7       	brne	.-4      	; 0xa12 <lcd_write_instruction_4d+0x2e>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     a16:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     a18:	82 2f       	mov	r24, r18
+     a1a:	82 95       	swap	r24
+     a1c:	80 7f       	andi	r24, 0xF0	; 240
+     a1e:	23 fd       	sbrc	r18, 3
+     a20:	15 c0       	rjmp	.+42     	; 0xa4c <lcd_write_instruction_4d+0x68>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     a22:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     a24:	86 fd       	sbrc	r24, 6
+     a26:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     a28:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     a2a:	85 fd       	sbrc	r24, 5
+     a2c:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     a2e:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     a30:	84 fd       	sbrc	r24, 4
+     a32:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     a34:	93 9a       	sbi	0x12, 3	; 18
+     a36:	8a ef       	ldi	r24, 0xFA	; 250
+     a38:	90 e0       	ldi	r25, 0x00	; 0
+     a3a:	fc 01       	movw	r30, r24
+     a3c:	31 97       	sbiw	r30, 0x01	; 1
+     a3e:	f1 f7       	brne	.-4      	; 0xa3c <lcd_write_instruction_4d+0x58>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     a40:	93 98       	cbi	0x12, 3	; 18
+     a42:	01 97       	sbiw	r24, 0x01	; 1
+     a44:	f1 f7       	brne	.-4      	; 0xa42 <lcd_write_instruction_4d+0x5e>
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+    lcd_write_4(theInstruction);                    // write the upper 4-bits of the data
+    lcd_write_4(theInstruction << 4);               // write the lower 4-bits of the data
+}
+     a46:	08 95       	ret
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     a48:	97 9a       	sbi	0x12, 7	; 18
+     a4a:	d2 cf       	rjmp	.-92     	; 0x9f0 <lcd_write_instruction_4d+0xc>
+     a4c:	97 9a       	sbi	0x12, 7	; 18
+     a4e:	e9 cf       	rjmp	.-46     	; 0xa22 <lcd_write_instruction_4d+0x3e>
+
+00000a50 <lcd_write_character_4d>:
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+
+void lcd_write_character_4d(uint8_t theData)
+{
+     a50:	28 2f       	mov	r18, r24
+    lcd_RS_port |= (1<<lcd_RS_bit);                 // select the Data Register (RS high)
+     a52:	92 9a       	sbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     a54:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     a56:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     a58:	87 fd       	sbrc	r24, 7
+     a5a:	2c c0       	rjmp	.+88     	; 0xab4 <lcd_write_character_4d+0x64>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     a5c:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     a5e:	82 2f       	mov	r24, r18
+     a60:	26 fd       	sbrc	r18, 6
+     a62:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     a64:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     a66:	85 fd       	sbrc	r24, 5
+     a68:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     a6a:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     a6c:	84 fd       	sbrc	r24, 4
+     a6e:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     a70:	93 9a       	sbi	0x12, 3	; 18
+     a72:	8a ef       	ldi	r24, 0xFA	; 250
+     a74:	90 e0       	ldi	r25, 0x00	; 0
+     a76:	fc 01       	movw	r30, r24
+     a78:	31 97       	sbiw	r30, 0x01	; 1
+     a7a:	f1 f7       	brne	.-4      	; 0xa78 <lcd_write_character_4d+0x28>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     a7c:	93 98       	cbi	0x12, 3	; 18
+     a7e:	01 97       	sbiw	r24, 0x01	; 1
+     a80:	f1 f7       	brne	.-4      	; 0xa7e <lcd_write_character_4d+0x2e>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     a82:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     a84:	82 2f       	mov	r24, r18
+     a86:	82 95       	swap	r24
+     a88:	80 7f       	andi	r24, 0xF0	; 240
+     a8a:	23 fd       	sbrc	r18, 3
+     a8c:	15 c0       	rjmp	.+42     	; 0xab8 <lcd_write_character_4d+0x68>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     a8e:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     a90:	86 fd       	sbrc	r24, 6
+     a92:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     a94:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     a96:	85 fd       	sbrc	r24, 5
+     a98:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     a9a:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     a9c:	84 fd       	sbrc	r24, 4
+     a9e:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     aa0:	93 9a       	sbi	0x12, 3	; 18
+     aa2:	8a ef       	ldi	r24, 0xFA	; 250
+     aa4:	90 e0       	ldi	r25, 0x00	; 0
+     aa6:	fc 01       	movw	r30, r24
+     aa8:	31 97       	sbiw	r30, 0x01	; 1
+     aaa:	f1 f7       	brne	.-4      	; 0xaa8 <lcd_write_character_4d+0x58>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     aac:	93 98       	cbi	0x12, 3	; 18
+     aae:	01 97       	sbiw	r24, 0x01	; 1
+     ab0:	f1 f7       	brne	.-4      	; 0xaae <lcd_write_character_4d+0x5e>
+{
+    lcd_RS_port |= (1<<lcd_RS_bit);                 // select the Data Register (RS high)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+    lcd_write_4(theData);                           // write the upper 4-bits of the data
+    lcd_write_4(theData << 4);                      // write the lower 4-bits of the data
+}
+     ab2:	08 95       	ret
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     ab4:	97 9a       	sbi	0x12, 7	; 18
+     ab6:	d2 cf       	rjmp	.-92     	; 0xa5c <lcd_write_character_4d+0xc>
+     ab8:	97 9a       	sbi	0x12, 7	; 18
+     aba:	e9 cf       	rjmp	.-46     	; 0xa8e <lcd_write_character_4d+0x3e>
+
+00000abc <lcd_write_string_4d>:
+  Entry:    (theString) is the string to be displayed
+  Exit:     no parameters
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+     abc:	df 93       	push	r29
+     abe:	cf 93       	push	r28
+     ac0:	00 d0       	rcall	.+0      	; 0xac2 <lcd_write_string_4d+0x6>
+     ac2:	cd b7       	in	r28, 0x3d	; 61
+     ac4:	de b7       	in	r29, 0x3e	; 62
+     ac6:	ac 01       	movw	r20, r24
+    volatile int i = 0;                             // character counter*/
+     ac8:	1a 82       	std	Y+2, r1	; 0x02
+     aca:	19 82       	std	Y+1, r1	; 0x01
+    while (theString[i] != 0)
+     acc:	e9 81       	ldd	r30, Y+1	; 0x01
+     ace:	fa 81       	ldd	r31, Y+2	; 0x02
+     ad0:	e8 0f       	add	r30, r24
+     ad2:	f9 1f       	adc	r31, r25
+     ad4:	80 81       	ld	r24, Z
+     ad6:	88 23       	and	r24, r24
+     ad8:	09 f4       	brne	.+2      	; 0xadc <lcd_write_string_4d+0x20>
+     ada:	4b c0       	rjmp	.+150    	; 0xb72 <lcd_write_string_4d+0xb6>
+     adc:	2a ef       	ldi	r18, 0xFA	; 250
+     ade:	30 e0       	ldi	r19, 0x00	; 0
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     ae0:	64 ec       	ldi	r22, 0xC4	; 196
+     ae2:	79 e0       	ldi	r23, 0x09	; 9
+     ae4:	38 c0       	rjmp	.+112    	; 0xb56 <lcd_write_string_4d+0x9a>
+     ae6:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     ae8:	8e 2f       	mov	r24, r30
+     aea:	e6 fd       	sbrc	r30, 6
+     aec:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     aee:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     af0:	85 fd       	sbrc	r24, 5
+     af2:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     af4:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     af6:	84 fd       	sbrc	r24, 4
+     af8:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     afa:	93 9a       	sbi	0x12, 3	; 18
+     afc:	c9 01       	movw	r24, r18
+     afe:	01 97       	sbiw	r24, 0x01	; 1
+     b00:	f1 f7       	brne	.-4      	; 0xafe <lcd_write_string_4d+0x42>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     b02:	93 98       	cbi	0x12, 3	; 18
+     b04:	c9 01       	movw	r24, r18
+     b06:	01 97       	sbiw	r24, 0x01	; 1
+     b08:	f1 f7       	brne	.-4      	; 0xb06 <lcd_write_string_4d+0x4a>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     b0a:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     b0c:	8e 2f       	mov	r24, r30
+     b0e:	82 95       	swap	r24
+     b10:	80 7f       	andi	r24, 0xF0	; 240
+     b12:	e3 fd       	sbrc	r30, 3
+     b14:	2c c0       	rjmp	.+88     	; 0xb6e <lcd_write_string_4d+0xb2>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     b16:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     b18:	86 fd       	sbrc	r24, 6
+     b1a:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     b1c:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     b1e:	85 fd       	sbrc	r24, 5
+     b20:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     b22:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     b24:	84 fd       	sbrc	r24, 4
+     b26:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     b28:	93 9a       	sbi	0x12, 3	; 18
+     b2a:	c9 01       	movw	r24, r18
+     b2c:	01 97       	sbiw	r24, 0x01	; 1
+     b2e:	f1 f7       	brne	.-4      	; 0xb2c <lcd_write_string_4d+0x70>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     b30:	93 98       	cbi	0x12, 3	; 18
+     b32:	c9 01       	movw	r24, r18
+     b34:	01 97       	sbiw	r24, 0x01	; 1
+     b36:	f1 f7       	brne	.-4      	; 0xb34 <lcd_write_string_4d+0x78>
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+    {
+        lcd_write_character_4d(theString[i]);
+        i++;
+     b38:	89 81       	ldd	r24, Y+1	; 0x01
+     b3a:	9a 81       	ldd	r25, Y+2	; 0x02
+     b3c:	01 96       	adiw	r24, 0x01	; 1
+     b3e:	9a 83       	std	Y+2, r25	; 0x02
+     b40:	89 83       	std	Y+1, r24	; 0x01
+     b42:	cb 01       	movw	r24, r22
+     b44:	01 97       	sbiw	r24, 0x01	; 1
+     b46:	f1 f7       	brne	.-4      	; 0xb44 <lcd_write_string_4d+0x88>
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+     b48:	e9 81       	ldd	r30, Y+1	; 0x01
+     b4a:	fa 81       	ldd	r31, Y+2	; 0x02
+     b4c:	e4 0f       	add	r30, r20
+     b4e:	f5 1f       	adc	r31, r21
+     b50:	80 81       	ld	r24, Z
+     b52:	88 23       	and	r24, r24
+     b54:	71 f0       	breq	.+28     	; 0xb72 <lcd_write_string_4d+0xb6>
+    {
+        lcd_write_character_4d(theString[i]);
+     b56:	e9 81       	ldd	r30, Y+1	; 0x01
+     b58:	fa 81       	ldd	r31, Y+2	; 0x02
+     b5a:	e4 0f       	add	r30, r20
+     b5c:	f5 1f       	adc	r31, r21
+     b5e:	e0 81       	ld	r30, Z
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+
+void lcd_write_character_4d(uint8_t theData)
+{
+    lcd_RS_port |= (1<<lcd_RS_bit);                 // select the Data Register (RS high)
+     b60:	92 9a       	sbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     b62:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     b64:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     b66:	e7 ff       	sbrs	r30, 7
+     b68:	be cf       	rjmp	.-132    	; 0xae6 <lcd_write_string_4d+0x2a>
+     b6a:	97 9a       	sbi	0x12, 7	; 18
+     b6c:	bc cf       	rjmp	.-136    	; 0xae6 <lcd_write_string_4d+0x2a>
+     b6e:	97 9a       	sbi	0x12, 7	; 18
+     b70:	d2 cf       	rjmp	.-92     	; 0xb16 <lcd_write_string_4d+0x5a>
+    {
+        lcd_write_character_4d(theString[i]);
+        i++;
+        _delay_ms(10);                              // 40 uS delay (min)
+    }
+}
+     b72:	0f 90       	pop	r0
+     b74:	0f 90       	pop	r0
+     b76:	cf 91       	pop	r28
+     b78:	df 91       	pop	r29
+     b7a:	08 95       	ret
+
+00000b7c <lcd_init_4d>:
+*/
+void lcd_init_4d(void)
+{
+
+
+lcd_D7_ddr |= (1<<lcd_D7_bit);                  // 4 data lines - output
+     b7c:	8f 9a       	sbi	0x11, 7	; 17
+    lcd_D6_ddr |= (1<<lcd_D6_bit);
+     b7e:	8e 9a       	sbi	0x11, 6	; 17
+    lcd_D5_ddr |= (1<<lcd_D5_bit);
+     b80:	8d 9a       	sbi	0x11, 5	; 17
+    lcd_D4_ddr |= (1<<lcd_D4_bit);
+     b82:	8c 9a       	sbi	0x11, 4	; 17
+
+// configure the microprocessor pins for the control lines
+    lcd_E_ddr |= (1<<lcd_E_bit);                    // E line - output
+     b84:	8b 9a       	sbi	0x11, 3	; 17
+    lcd_RS_ddr |= (1<<lcd_RS_bit);                  // RS line - output
+     b86:	8a 9a       	sbi	0x11, 2	; 17
+     b88:	88 ea       	ldi	r24, 0xA8	; 168
+     b8a:	91 e6       	ldi	r25, 0x61	; 97
+     b8c:	01 97       	sbiw	r24, 0x01	; 1
+     b8e:	f1 f7       	brne	.-4      	; 0xb8c <lcd_init_4d+0x10>
+//   this instruction can be sent on just the four available data lines and it will be interpreted 
+//   properly by the LCD controller.  The 'lcd_write_4' subroutine will accomplish this if the 
+//   control lines have previously been configured properly.
+
+// Set up the RS and E lines for the 'lcd_write_4' subroutine.
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     b90:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     b92:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     b94:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     b96:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     b98:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     b9a:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     b9c:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     b9e:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     ba0:	93 9a       	sbi	0x12, 3	; 18
+     ba2:	8a ef       	ldi	r24, 0xFA	; 250
+     ba4:	90 e0       	ldi	r25, 0x00	; 0
+     ba6:	fc 01       	movw	r30, r24
+     ba8:	31 97       	sbiw	r30, 0x01	; 1
+     baa:	f1 f7       	brne	.-4      	; 0xba8 <lcd_init_4d+0x2c>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     bac:	93 98       	cbi	0x12, 3	; 18
+     bae:	fc 01       	movw	r30, r24
+     bb0:	31 97       	sbiw	r30, 0x01	; 1
+     bb2:	f1 f7       	brne	.-4      	; 0xbb0 <lcd_init_4d+0x34>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     bb4:	e4 ec       	ldi	r30, 0xC4	; 196
+     bb6:	f9 e0       	ldi	r31, 0x09	; 9
+     bb8:	31 97       	sbiw	r30, 0x01	; 1
+     bba:	f1 f7       	brne	.-4      	; 0xbb8 <lcd_init_4d+0x3c>
+     bbc:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     bbe:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     bc0:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     bc2:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     bc4:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     bc6:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     bc8:	93 9a       	sbi	0x12, 3	; 18
+     bca:	fc 01       	movw	r30, r24
+     bcc:	31 97       	sbiw	r30, 0x01	; 1
+     bce:	f1 f7       	brne	.-4      	; 0xbcc <lcd_init_4d+0x50>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     bd0:	93 98       	cbi	0x12, 3	; 18
+     bd2:	fc 01       	movw	r30, r24
+     bd4:	31 97       	sbiw	r30, 0x01	; 1
+     bd6:	f1 f7       	brne	.-4      	; 0xbd4 <lcd_init_4d+0x58>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     bd8:	28 e8       	ldi	r18, 0x88	; 136
+     bda:	33 e1       	ldi	r19, 0x13	; 19
+     bdc:	f9 01       	movw	r30, r18
+     bde:	31 97       	sbiw	r30, 0x01	; 1
+     be0:	f1 f7       	brne	.-4      	; 0xbde <lcd_init_4d+0x62>
+     be2:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     be4:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     be6:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     be8:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     bea:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     bec:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     bee:	93 9a       	sbi	0x12, 3	; 18
+     bf0:	fc 01       	movw	r30, r24
+     bf2:	31 97       	sbiw	r30, 0x01	; 1
+     bf4:	f1 f7       	brne	.-4      	; 0xbf2 <lcd_init_4d+0x76>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     bf6:	93 98       	cbi	0x12, 3	; 18
+     bf8:	fc 01       	movw	r30, r24
+     bfa:	31 97       	sbiw	r30, 0x01	; 1
+     bfc:	f1 f7       	brne	.-4      	; 0xbfa <lcd_init_4d+0x7e>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     bfe:	f9 01       	movw	r30, r18
+     c00:	31 97       	sbiw	r30, 0x01	; 1
+     c02:	f1 f7       	brne	.-4      	; 0xc00 <lcd_init_4d+0x84>
+     c04:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     c06:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     c08:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     c0a:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     c0c:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     c0e:	93 9a       	sbi	0x12, 3	; 18
+     c10:	fc 01       	movw	r30, r24
+     c12:	31 97       	sbiw	r30, 0x01	; 1
+     c14:	f1 f7       	brne	.-4      	; 0xc12 <lcd_init_4d+0x96>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     c16:	93 98       	cbi	0x12, 3	; 18
+     c18:	fc 01       	movw	r30, r24
+     c1a:	31 97       	sbiw	r30, 0x01	; 1
+     c1c:	f1 f7       	brne	.-4      	; 0xc1a <lcd_init_4d+0x9e>
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     c1e:	fc 01       	movw	r30, r24
+     c20:	31 97       	sbiw	r30, 0x01	; 1
+     c22:	f1 f7       	brne	.-4      	; 0xc20 <lcd_init_4d+0xa4>
+     c24:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     c26:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     c28:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     c2a:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     c2c:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     c2e:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     c30:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     c32:	93 9a       	sbi	0x12, 3	; 18
+     c34:	fc 01       	movw	r30, r24
+     c36:	31 97       	sbiw	r30, 0x01	; 1
+     c38:	f1 f7       	brne	.-4      	; 0xc36 <lcd_init_4d+0xba>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     c3a:	93 98       	cbi	0x12, 3	; 18
+     c3c:	fc 01       	movw	r30, r24
+     c3e:	31 97       	sbiw	r30, 0x01	; 1
+     c40:	f1 f7       	brne	.-4      	; 0xc3e <lcd_init_4d+0xc2>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     c42:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     c44:	97 9a       	sbi	0x12, 7	; 18
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     c46:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     c48:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     c4a:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     c4c:	93 9a       	sbi	0x12, 3	; 18
+     c4e:	fc 01       	movw	r30, r24
+     c50:	31 97       	sbiw	r30, 0x01	; 1
+     c52:	f1 f7       	brne	.-4      	; 0xc50 <lcd_init_4d+0xd4>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     c54:	93 98       	cbi	0x12, 3	; 18
+     c56:	fc 01       	movw	r30, r24
+     c58:	31 97       	sbiw	r30, 0x01	; 1
+     c5a:	f1 f7       	brne	.-4      	; 0xc58 <lcd_init_4d+0xdc>
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     c5c:	fc 01       	movw	r30, r24
+     c5e:	31 97       	sbiw	r30, 0x01	; 1
+     c60:	f1 f7       	brne	.-4      	; 0xc5e <lcd_init_4d+0xe2>
+     c62:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     c64:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     c66:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     c68:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     c6a:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     c6c:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     c6e:	93 9a       	sbi	0x12, 3	; 18
+     c70:	fc 01       	movw	r30, r24
+     c72:	31 97       	sbiw	r30, 0x01	; 1
+     c74:	f1 f7       	brne	.-4      	; 0xc72 <lcd_init_4d+0xf6>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     c76:	93 98       	cbi	0x12, 3	; 18
+     c78:	fc 01       	movw	r30, r24
+     c7a:	31 97       	sbiw	r30, 0x01	; 1
+     c7c:	f1 f7       	brne	.-4      	; 0xc7a <lcd_init_4d+0xfe>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     c7e:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     c80:	97 9a       	sbi	0x12, 7	; 18
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     c82:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     c84:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     c86:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     c88:	93 9a       	sbi	0x12, 3	; 18
+     c8a:	fc 01       	movw	r30, r24
+     c8c:	31 97       	sbiw	r30, 0x01	; 1
+     c8e:	f1 f7       	brne	.-4      	; 0xc8c <lcd_init_4d+0x110>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     c90:	93 98       	cbi	0x12, 3	; 18
+     c92:	fc 01       	movw	r30, r24
+     c94:	31 97       	sbiw	r30, 0x01	; 1
+     c96:	f1 f7       	brne	.-4      	; 0xc94 <lcd_init_4d+0x118>
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     c98:	fc 01       	movw	r30, r24
+     c9a:	31 97       	sbiw	r30, 0x01	; 1
+     c9c:	f1 f7       	brne	.-4      	; 0xc9a <lcd_init_4d+0x11e>
+     c9e:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     ca0:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     ca2:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     ca4:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     ca6:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     ca8:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     caa:	93 9a       	sbi	0x12, 3	; 18
+     cac:	fc 01       	movw	r30, r24
+     cae:	31 97       	sbiw	r30, 0x01	; 1
+     cb0:	f1 f7       	brne	.-4      	; 0xcae <lcd_init_4d+0x132>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     cb2:	93 98       	cbi	0x12, 3	; 18
+     cb4:	fc 01       	movw	r30, r24
+     cb6:	31 97       	sbiw	r30, 0x01	; 1
+     cb8:	f1 f7       	brne	.-4      	; 0xcb6 <lcd_init_4d+0x13a>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     cba:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     cbc:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     cbe:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     cc0:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     cc2:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     cc4:	93 9a       	sbi	0x12, 3	; 18
+     cc6:	fc 01       	movw	r30, r24
+     cc8:	31 97       	sbiw	r30, 0x01	; 1
+     cca:	f1 f7       	brne	.-4      	; 0xcc8 <lcd_init_4d+0x14c>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     ccc:	93 98       	cbi	0x12, 3	; 18
+     cce:	fc 01       	movw	r30, r24
+     cd0:	31 97       	sbiw	r30, 0x01	; 1
+     cd2:	f1 f7       	brne	.-4      	; 0xcd0 <lcd_init_4d+0x154>
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     cd4:	e8 ee       	ldi	r30, 0xE8	; 232
+     cd6:	f3 e0       	ldi	r31, 0x03	; 3
+     cd8:	31 97       	sbiw	r30, 0x01	; 1
+     cda:	f1 f7       	brne	.-4      	; 0xcd8 <lcd_init_4d+0x15c>
+     cdc:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     cde:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     ce0:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     ce2:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     ce4:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     ce6:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     ce8:	93 9a       	sbi	0x12, 3	; 18
+     cea:	fc 01       	movw	r30, r24
+     cec:	31 97       	sbiw	r30, 0x01	; 1
+     cee:	f1 f7       	brne	.-4      	; 0xcec <lcd_init_4d+0x170>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     cf0:	93 98       	cbi	0x12, 3	; 18
+     cf2:	fc 01       	movw	r30, r24
+     cf4:	31 97       	sbiw	r30, 0x01	; 1
+     cf6:	f1 f7       	brne	.-4      	; 0xcf4 <lcd_init_4d+0x178>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     cf8:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     cfa:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     cfc:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     cfe:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     d00:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     d02:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     d04:	93 9a       	sbi	0x12, 3	; 18
+     d06:	fc 01       	movw	r30, r24
+     d08:	31 97       	sbiw	r30, 0x01	; 1
+     d0a:	f1 f7       	brne	.-4      	; 0xd08 <lcd_init_4d+0x18c>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     d0c:	93 98       	cbi	0x12, 3	; 18
+     d0e:	fc 01       	movw	r30, r24
+     d10:	31 97       	sbiw	r30, 0x01	; 1
+     d12:	f1 f7       	brne	.-4      	; 0xd10 <lcd_init_4d+0x194>
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     d14:	fc 01       	movw	r30, r24
+     d16:	31 97       	sbiw	r30, 0x01	; 1
+     d18:	f1 f7       	brne	.-4      	; 0xd16 <lcd_init_4d+0x19a>
+     d1a:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     d1c:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     d1e:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     d20:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     d22:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     d24:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     d26:	93 9a       	sbi	0x12, 3	; 18
+     d28:	fc 01       	movw	r30, r24
+     d2a:	31 97       	sbiw	r30, 0x01	; 1
+     d2c:	f1 f7       	brne	.-4      	; 0xd2a <lcd_init_4d+0x1ae>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     d2e:	93 98       	cbi	0x12, 3	; 18
+     d30:	fc 01       	movw	r30, r24
+     d32:	31 97       	sbiw	r30, 0x01	; 1
+     d34:	f1 f7       	brne	.-4      	; 0xd32 <lcd_init_4d+0x1b6>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     d36:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     d38:	97 9a       	sbi	0x12, 7	; 18
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     d3a:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     d3c:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     d3e:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     d40:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     d42:	93 9a       	sbi	0x12, 3	; 18
+     d44:	fc 01       	movw	r30, r24
+     d46:	31 97       	sbiw	r30, 0x01	; 1
+     d48:	f1 f7       	brne	.-4      	; 0xd46 <lcd_init_4d+0x1ca>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     d4a:	93 98       	cbi	0x12, 3	; 18
+     d4c:	fc 01       	movw	r30, r24
+     d4e:	31 97       	sbiw	r30, 0x01	; 1
+     d50:	f1 f7       	brne	.-4      	; 0xd4e <lcd_init_4d+0x1d2>
+//  has been left in the OFF condition.  This is a good time to turn the display back ON.
+ 
+// Display On/Off Control instruction
+    lcd_write_instruction_4d(lcd_DisplayOn);         // turn the display ON
+    _delay_ms(1);                                  // 40uS delay (min)
+}
+     d52:	01 97       	sbiw	r24, 0x01	; 1
+     d54:	f1 f7       	brne	.-4      	; 0xd52 <lcd_init_4d+0x1d6>
+     d56:	08 95       	ret
+
+00000d58 <main1213>:
+void lcd_write_string_4d(uint8_t *);
+void lcd_init_4d(void);
+
+/******************************* Main Program Code *************************/
+int main1213(void)
+{
+     d58:	df 93       	push	r29
+     d5a:	cf 93       	push	r28
+     d5c:	00 d0       	rcall	.+0      	; 0xd5e <main1213+0x6>
+     d5e:	cd b7       	in	r28, 0x3d	; 61
+     d60:	de b7       	in	r29, 0x3e	; 62
+// configure the microprocessor pins for the data lines
+    lcd_D7_ddr |= (1<<lcd_D7_bit);                  // 4 data lines - output
+     d62:	8f 9a       	sbi	0x11, 7	; 17
+    lcd_D6_ddr |= (1<<lcd_D6_bit);
+     d64:	8e 9a       	sbi	0x11, 6	; 17
+    lcd_D5_ddr |= (1<<lcd_D5_bit);
+     d66:	8d 9a       	sbi	0x11, 5	; 17
+    lcd_D4_ddr |= (1<<lcd_D4_bit);
+     d68:	8c 9a       	sbi	0x11, 4	; 17
+
+// configure the microprocessor pins for the control lines
+    lcd_E_ddr |= (1<<lcd_E_bit);                    // E line - output
+     d6a:	8b 9a       	sbi	0x11, 3	; 17
+    lcd_RS_ddr |= (1<<lcd_RS_bit);                  // RS line - output
+     d6c:	8a 9a       	sbi	0x11, 2	; 17
+
+// initialize the LCD controller as determined by the defines (LCD instructions)
+    lcd_init_4d();                                  // initialize the LCD display for a 4-bit interface
+     d6e:	0e 94 be 05 	call	0xb7c	; 0xb7c <lcd_init_4d>
+  Exit:     no parameters
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+    volatile int i = 0;                             // character counter*/
+     d72:	1a 82       	std	Y+2, r1	; 0x02
+     d74:	19 82       	std	Y+1, r1	; 0x01
+    while (theString[i] != 0)
+     d76:	e9 81       	ldd	r30, Y+1	; 0x01
+     d78:	fa 81       	ldd	r31, Y+2	; 0x02
+     d7a:	ee 58       	subi	r30, 0x8E	; 142
+     d7c:	ff 4f       	sbci	r31, 0xFF	; 255
+     d7e:	80 81       	ld	r24, Z
+     d80:	88 23       	and	r24, r24
+     d82:	09 f4       	brne	.+2      	; 0xd86 <main1213+0x2e>
+     d84:	4b c0       	rjmp	.+150    	; 0xe1c <main1213+0xc4>
+     d86:	2a ef       	ldi	r18, 0xFA	; 250
+     d88:	30 e0       	ldi	r19, 0x00	; 0
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     d8a:	44 ec       	ldi	r20, 0xC4	; 196
+     d8c:	59 e0       	ldi	r21, 0x09	; 9
+     d8e:	38 c0       	rjmp	.+112    	; 0xe00 <main1213+0xa8>
+     d90:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     d92:	8e 2f       	mov	r24, r30
+     d94:	e6 fd       	sbrc	r30, 6
+     d96:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     d98:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     d9a:	85 fd       	sbrc	r24, 5
+     d9c:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     d9e:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     da0:	84 fd       	sbrc	r24, 4
+     da2:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     da4:	93 9a       	sbi	0x12, 3	; 18
+     da6:	c9 01       	movw	r24, r18
+     da8:	01 97       	sbiw	r24, 0x01	; 1
+     daa:	f1 f7       	brne	.-4      	; 0xda8 <main1213+0x50>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     dac:	93 98       	cbi	0x12, 3	; 18
+     dae:	c9 01       	movw	r24, r18
+     db0:	01 97       	sbiw	r24, 0x01	; 1
+     db2:	f1 f7       	brne	.-4      	; 0xdb0 <main1213+0x58>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     db4:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     db6:	8e 2f       	mov	r24, r30
+     db8:	82 95       	swap	r24
+     dba:	80 7f       	andi	r24, 0xF0	; 240
+     dbc:	e3 fd       	sbrc	r30, 3
+     dbe:	2c c0       	rjmp	.+88     	; 0xe18 <main1213+0xc0>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     dc0:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     dc2:	86 fd       	sbrc	r24, 6
+     dc4:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     dc6:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     dc8:	85 fd       	sbrc	r24, 5
+     dca:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     dcc:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     dce:	84 fd       	sbrc	r24, 4
+     dd0:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     dd2:	93 9a       	sbi	0x12, 3	; 18
+     dd4:	c9 01       	movw	r24, r18
+     dd6:	01 97       	sbiw	r24, 0x01	; 1
+     dd8:	f1 f7       	brne	.-4      	; 0xdd6 <main1213+0x7e>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     dda:	93 98       	cbi	0x12, 3	; 18
+     ddc:	c9 01       	movw	r24, r18
+     dde:	01 97       	sbiw	r24, 0x01	; 1
+     de0:	f1 f7       	brne	.-4      	; 0xdde <main1213+0x86>
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+    {
+        lcd_write_character_4d(theString[i]);
+        i++;
+     de2:	89 81       	ldd	r24, Y+1	; 0x01
+     de4:	9a 81       	ldd	r25, Y+2	; 0x02
+     de6:	01 96       	adiw	r24, 0x01	; 1
+     de8:	9a 83       	std	Y+2, r25	; 0x02
+     dea:	89 83       	std	Y+1, r24	; 0x01
+     dec:	ca 01       	movw	r24, r20
+     dee:	01 97       	sbiw	r24, 0x01	; 1
+     df0:	f1 f7       	brne	.-4      	; 0xdee <main1213+0x96>
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+     df2:	e9 81       	ldd	r30, Y+1	; 0x01
+     df4:	fa 81       	ldd	r31, Y+2	; 0x02
+     df6:	ee 58       	subi	r30, 0x8E	; 142
+     df8:	ff 4f       	sbci	r31, 0xFF	; 255
+     dfa:	80 81       	ld	r24, Z
+     dfc:	88 23       	and	r24, r24
+     dfe:	71 f0       	breq	.+28     	; 0xe1c <main1213+0xc4>
+    {
+        lcd_write_character_4d(theString[i]);
+     e00:	e9 81       	ldd	r30, Y+1	; 0x01
+     e02:	fa 81       	ldd	r31, Y+2	; 0x02
+     e04:	ee 58       	subi	r30, 0x8E	; 142
+     e06:	ff 4f       	sbci	r31, 0xFF	; 255
+     e08:	e0 81       	ld	r30, Z
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+
+void lcd_write_character_4d(uint8_t theData)
+{
+    lcd_RS_port |= (1<<lcd_RS_bit);                 // select the Data Register (RS high)
+     e0a:	92 9a       	sbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     e0c:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     e0e:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     e10:	e7 ff       	sbrs	r30, 7
+     e12:	be cf       	rjmp	.-132    	; 0xd90 <main1213+0x38>
+     e14:	97 9a       	sbi	0x12, 7	; 18
+     e16:	bc cf       	rjmp	.-136    	; 0xd90 <main1213+0x38>
+     e18:	97 9a       	sbi	0x12, 7	; 18
+     e1a:	d2 cf       	rjmp	.-92     	; 0xdc0 <main1213+0x68>
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+     e1c:	92 98       	cbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     e1e:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     e20:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     e22:	97 9a       	sbi	0x12, 7	; 18
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     e24:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     e26:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     e28:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     e2a:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     e2c:	93 9a       	sbi	0x12, 3	; 18
+     e2e:	8a ef       	ldi	r24, 0xFA	; 250
+     e30:	90 e0       	ldi	r25, 0x00	; 0
+     e32:	fc 01       	movw	r30, r24
+     e34:	31 97       	sbiw	r30, 0x01	; 1
+     e36:	f1 f7       	brne	.-4      	; 0xe34 <main1213+0xdc>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     e38:	93 98       	cbi	0x12, 3	; 18
+     e3a:	fc 01       	movw	r30, r24
+     e3c:	31 97       	sbiw	r30, 0x01	; 1
+     e3e:	f1 f7       	brne	.-4      	; 0xe3c <main1213+0xe4>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     e40:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     e42:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     e44:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     e46:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     e48:	93 9a       	sbi	0x12, 3	; 18
+     e4a:	fc 01       	movw	r30, r24
+     e4c:	31 97       	sbiw	r30, 0x01	; 1
+     e4e:	f1 f7       	brne	.-4      	; 0xe4c <main1213+0xf4>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     e50:	93 98       	cbi	0x12, 3	; 18
+     e52:	01 97       	sbiw	r24, 0x01	; 1
+     e54:	f1 f7       	brne	.-4      	; 0xe52 <main1213+0xfa>
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+     e56:	8a e1       	ldi	r24, 0x1A	; 26
+     e58:	8a 95       	dec	r24
+     e5a:	f1 f7       	brne	.-4      	; 0xe58 <main1213+0x100>
+  Exit:     no parameters
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+    volatile int i = 0;                             // character counter*/
+     e5c:	1a 82       	std	Y+2, r1	; 0x02
+     e5e:	19 82       	std	Y+1, r1	; 0x01
+    while (theString[i] != 0)
+     e60:	e9 81       	ldd	r30, Y+1	; 0x01
+     e62:	fa 81       	ldd	r31, Y+2	; 0x02
+     e64:	e1 58       	subi	r30, 0x81	; 129
+     e66:	ff 4f       	sbci	r31, 0xFF	; 255
+     e68:	80 81       	ld	r24, Z
+     e6a:	88 23       	and	r24, r24
+     e6c:	09 f4       	brne	.+2      	; 0xe70 <main1213+0x118>
+     e6e:	4b c0       	rjmp	.+150    	; 0xf06 <main1213+0x1ae>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+     e70:	2a ef       	ldi	r18, 0xFA	; 250
+     e72:	30 e0       	ldi	r19, 0x00	; 0
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     e74:	44 ec       	ldi	r20, 0xC4	; 196
+     e76:	59 e0       	ldi	r21, 0x09	; 9
+     e78:	38 c0       	rjmp	.+112    	; 0xeea <main1213+0x192>
+     e7a:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     e7c:	8e 2f       	mov	r24, r30
+     e7e:	e6 fd       	sbrc	r30, 6
+     e80:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     e82:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     e84:	85 fd       	sbrc	r24, 5
+     e86:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     e88:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     e8a:	84 fd       	sbrc	r24, 4
+     e8c:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     e8e:	93 9a       	sbi	0x12, 3	; 18
+     e90:	c9 01       	movw	r24, r18
+     e92:	01 97       	sbiw	r24, 0x01	; 1
+     e94:	f1 f7       	brne	.-4      	; 0xe92 <main1213+0x13a>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     e96:	93 98       	cbi	0x12, 3	; 18
+     e98:	c9 01       	movw	r24, r18
+     e9a:	01 97       	sbiw	r24, 0x01	; 1
+     e9c:	f1 f7       	brne	.-4      	; 0xe9a <main1213+0x142>
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     e9e:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     ea0:	8e 2f       	mov	r24, r30
+     ea2:	82 95       	swap	r24
+     ea4:	80 7f       	andi	r24, 0xF0	; 240
+     ea6:	e3 fd       	sbrc	r30, 3
+     ea8:	2c c0       	rjmp	.+88     	; 0xf02 <main1213+0x1aa>
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+     eaa:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+     eac:	86 fd       	sbrc	r24, 6
+     eae:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+     eb0:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+     eb2:	85 fd       	sbrc	r24, 5
+     eb4:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+     eb6:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+     eb8:	84 fd       	sbrc	r24, 4
+     eba:	94 9a       	sbi	0x12, 4	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+     ebc:	93 9a       	sbi	0x12, 3	; 18
+     ebe:	c9 01       	movw	r24, r18
+     ec0:	01 97       	sbiw	r24, 0x01	; 1
+     ec2:	f1 f7       	brne	.-4      	; 0xec0 <main1213+0x168>
+    _delay_ms(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+     ec4:	93 98       	cbi	0x12, 3	; 18
+     ec6:	c9 01       	movw	r24, r18
+     ec8:	01 97       	sbiw	r24, 0x01	; 1
+     eca:	f1 f7       	brne	.-4      	; 0xec8 <main1213+0x170>
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+    {
+        lcd_write_character_4d(theString[i]);
+        i++;
+     ecc:	89 81       	ldd	r24, Y+1	; 0x01
+     ece:	9a 81       	ldd	r25, Y+2	; 0x02
+     ed0:	01 96       	adiw	r24, 0x01	; 1
+     ed2:	9a 83       	std	Y+2, r25	; 0x02
+     ed4:	89 83       	std	Y+1, r24	; 0x01
+     ed6:	ca 01       	movw	r24, r20
+     ed8:	01 97       	sbiw	r24, 0x01	; 1
+     eda:	f1 f7       	brne	.-4      	; 0xed8 <main1213+0x180>
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+     edc:	e9 81       	ldd	r30, Y+1	; 0x01
+     ede:	fa 81       	ldd	r31, Y+2	; 0x02
+     ee0:	e1 58       	subi	r30, 0x81	; 129
+     ee2:	ff 4f       	sbci	r31, 0xFF	; 255
+     ee4:	80 81       	ld	r24, Z
+     ee6:	88 23       	and	r24, r24
+     ee8:	71 f0       	breq	.+28     	; 0xf06 <main1213+0x1ae>
+    {
+        lcd_write_character_4d(theString[i]);
+     eea:	e9 81       	ldd	r30, Y+1	; 0x01
+     eec:	fa 81       	ldd	r31, Y+2	; 0x02
+     eee:	e1 58       	subi	r30, 0x81	; 129
+     ef0:	ff 4f       	sbci	r31, 0xFF	; 255
+     ef2:	e0 81       	ld	r30, Z
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+
+void lcd_write_character_4d(uint8_t theData)
+{
+    lcd_RS_port |= (1<<lcd_RS_bit);                 // select the Data Register (RS high)
+     ef4:	92 9a       	sbi	0x12, 2	; 18
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+     ef6:	93 98       	cbi	0x12, 3	; 18
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+     ef8:	97 98       	cbi	0x12, 7	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+     efa:	e7 ff       	sbrs	r30, 7
+     efc:	be cf       	rjmp	.-132    	; 0xe7a <main1213+0x122>
+     efe:	97 9a       	sbi	0x12, 7	; 18
+     f00:	bc cf       	rjmp	.-136    	; 0xe7a <main1213+0x122>
+     f02:	97 9a       	sbi	0x12, 7	; 18
+     f04:	d2 cf       	rjmp	.-92     	; 0xeaa <main1213+0x152>
+     f06:	ff cf       	rjmp	.-2      	; 0xf06 <main1213+0x1ae>
+
+00000f08 <init_SWTimer>:
+{
+unsigned char counter=0;
+
+	for (counter=0;counter <SW_TIMER_COUNT ; counter++)
+	{
+	TimerStart[counter]=0;
+     f08:	10 92 ee 00 	sts	0x00EE, r1
+     f0c:	10 92 ed 00 	sts	0x00ED, r1
+	TimerState[counter] =TIMER_STOPPED;
+     f10:	82 e0       	ldi	r24, 0x02	; 2
+     f12:	80 93 01 01 	sts	0x0101, r24
+	TimerTimeOutVal[counter]=0;
+     f16:	10 92 f8 00 	sts	0x00F8, r1
+     f1a:	10 92 f7 00 	sts	0x00F7, r1
+{
+unsigned char counter=0;
+
+	for (counter=0;counter <SW_TIMER_COUNT ; counter++)
+	{
+	TimerStart[counter]=0;
+     f1e:	10 92 f0 00 	sts	0x00F0, r1
+     f22:	10 92 ef 00 	sts	0x00EF, r1
+	TimerState[counter] =TIMER_STOPPED;
+     f26:	80 93 02 01 	sts	0x0102, r24
+	TimerTimeOutVal[counter]=0;
+     f2a:	10 92 fa 00 	sts	0x00FA, r1
+     f2e:	10 92 f9 00 	sts	0x00F9, r1
+{
+unsigned char counter=0;
+
+	for (counter=0;counter <SW_TIMER_COUNT ; counter++)
+	{
+	TimerStart[counter]=0;
+     f32:	10 92 f2 00 	sts	0x00F2, r1
+     f36:	10 92 f1 00 	sts	0x00F1, r1
+	TimerState[counter] =TIMER_STOPPED;
+     f3a:	80 93 03 01 	sts	0x0103, r24
+	TimerTimeOutVal[counter]=0;
+     f3e:	10 92 fc 00 	sts	0x00FC, r1
+     f42:	10 92 fb 00 	sts	0x00FB, r1
+{
+unsigned char counter=0;
+
+	for (counter=0;counter <SW_TIMER_COUNT ; counter++)
+	{
+	TimerStart[counter]=0;
+     f46:	10 92 f4 00 	sts	0x00F4, r1
+     f4a:	10 92 f3 00 	sts	0x00F3, r1
+	TimerState[counter] =TIMER_STOPPED;
+     f4e:	80 93 04 01 	sts	0x0104, r24
+	TimerTimeOutVal[counter]=0;
+     f52:	10 92 fe 00 	sts	0x00FE, r1
+     f56:	10 92 fd 00 	sts	0x00FD, r1
+{
+unsigned char counter=0;
+
+	for (counter=0;counter <SW_TIMER_COUNT ; counter++)
+	{
+	TimerStart[counter]=0;
+     f5a:	10 92 f6 00 	sts	0x00F6, r1
+     f5e:	10 92 f5 00 	sts	0x00F5, r1
+	TimerState[counter] =TIMER_STOPPED;
+     f62:	80 93 05 01 	sts	0x0105, r24
+	TimerTimeOutVal[counter]=0;
+     f66:	10 92 00 01 	sts	0x0100, r1
+     f6a:	10 92 ff 00 	sts	0x00FF, r1
+	
+	}
+
+
+}
+     f6e:	08 95       	ret
+
+00000f70 <Start_Timer>:
+
+//---------------------------------------------------
+void Start_Timer(unsigned char Timer_ID , unsigned int TimeoutVal)
+{
+TimerStart[Timer_ID] = SWTimer_Ref1msCounter;
+     f70:	a8 2f       	mov	r26, r24
+     f72:	b0 e0       	ldi	r27, 0x00	; 0
+     f74:	20 91 bb 00 	lds	r18, 0x00BB
+     f78:	30 91 bc 00 	lds	r19, 0x00BC
+     f7c:	cd 01       	movw	r24, r26
+     f7e:	88 0f       	add	r24, r24
+     f80:	99 1f       	adc	r25, r25
+     f82:	fc 01       	movw	r30, r24
+     f84:	e3 51       	subi	r30, 0x13	; 19
+     f86:	ff 4f       	sbci	r31, 0xFF	; 255
+     f88:	31 83       	std	Z+1, r19	; 0x01
+     f8a:	20 83       	st	Z, r18
+TimerState[Timer_ID] =TIMER_RUNNING;
+     f8c:	af 5f       	subi	r26, 0xFF	; 255
+     f8e:	be 4f       	sbci	r27, 0xFE	; 254
+     f90:	21 e0       	ldi	r18, 0x01	; 1
+     f92:	2c 93       	st	X, r18
+TimerTimeOutVal[Timer_ID] =TimeoutVal;
+     f94:	89 50       	subi	r24, 0x09	; 9
+     f96:	9f 4f       	sbci	r25, 0xFF	; 255
+     f98:	fc 01       	movw	r30, r24
+     f9a:	71 83       	std	Z+1, r23	; 0x01
+     f9c:	60 83       	st	Z, r22
+}
+     f9e:	08 95       	ret
+
+00000fa0 <GetTimer_State>:
+
+//---------------------------------------------------
+unsigned char GetTimer_State(unsigned char TimerID)
+{
+     fa0:	cf 93       	push	r28
+     fa2:	df 93       	push	r29
+if ( TimerState[TimerID] == TIMER_RUNNING )
+     fa4:	e8 2f       	mov	r30, r24
+     fa6:	f0 e0       	ldi	r31, 0x00	; 0
+     fa8:	ef 01       	movw	r28, r30
+     faa:	cf 5f       	subi	r28, 0xFF	; 255
+     fac:	de 4f       	sbci	r29, 0xFE	; 254
+     fae:	88 81       	ld	r24, Y
+     fb0:	81 30       	cpi	r24, 0x01	; 1
+     fb2:	21 f0       	breq	.+8      	; 0xfbc <GetTimer_State+0x1c>
+    {
+		if( (SWTimer_Ref1msCounter -TimerStart[TimerID]) > TimerTimeOutVal[TimerID] )
+		TimerState[TimerID] =TIMER_EXPIRED;
+	}
+return TimerState[TimerID];
+     fb4:	88 81       	ld	r24, Y
+}
+     fb6:	df 91       	pop	r29
+     fb8:	cf 91       	pop	r28
+     fba:	08 95       	ret
+//---------------------------------------------------
+unsigned char GetTimer_State(unsigned char TimerID)
+{
+if ( TimerState[TimerID] == TIMER_RUNNING )
+    {
+		if( (SWTimer_Ref1msCounter -TimerStart[TimerID]) > TimerTimeOutVal[TimerID] )
+     fbc:	80 91 bb 00 	lds	r24, 0x00BB
+     fc0:	90 91 bc 00 	lds	r25, 0x00BC
+     fc4:	ee 0f       	add	r30, r30
+     fc6:	ff 1f       	adc	r31, r31
+     fc8:	df 01       	movw	r26, r30
+     fca:	a3 51       	subi	r26, 0x13	; 19
+     fcc:	bf 4f       	sbci	r27, 0xFF	; 255
+     fce:	4d 91       	ld	r20, X+
+     fd0:	5c 91       	ld	r21, X
+     fd2:	e9 50       	subi	r30, 0x09	; 9
+     fd4:	ff 4f       	sbci	r31, 0xFF	; 255
+     fd6:	20 81       	ld	r18, Z
+     fd8:	31 81       	ldd	r19, Z+1	; 0x01
+     fda:	84 1b       	sub	r24, r20
+     fdc:	95 0b       	sbc	r25, r21
+     fde:	28 17       	cp	r18, r24
+     fe0:	39 07       	cpc	r19, r25
+     fe2:	40 f7       	brcc	.-48     	; 0xfb4 <GetTimer_State+0x14>
+		TimerState[TimerID] =TIMER_EXPIRED;
+     fe4:	83 e0       	ldi	r24, 0x03	; 3
+     fe6:	88 83       	st	Y, r24
+	}
+return TimerState[TimerID];
+     fe8:	88 81       	ld	r24, Y
+}
+     fea:	df 91       	pop	r29
+     fec:	cf 91       	pop	r28
+     fee:	08 95       	ret
+
+00000ff0 <Stop_Timer>:
+//---------------------------------------------------
+void Stop_Timer(unsigned char TimerID) 
+{
+TimerState[TimerID] =TIMER_STOPPED;
+     ff0:	e1 e0       	ldi	r30, 0x01	; 1
+     ff2:	f1 e0       	ldi	r31, 0x01	; 1
+     ff4:	e8 0f       	add	r30, r24
+     ff6:	f1 1d       	adc	r31, r1
+     ff8:	82 e0       	ldi	r24, 0x02	; 2
+     ffa:	80 83       	st	Z, r24
+}
+     ffc:	08 95       	ret
+
+00000ffe <switch_init>:
+uint8_t Get_Switch_Status(void);
+
+void switch_init(void)
+{
+
+DDRB &= 0xFC;//PB0-Motor start,PB1-MOtor stop
+     ffe:	87 b3       	in	r24, 0x17	; 23
+    1000:	8c 7f       	andi	r24, 0xFC	; 252
+    1002:	87 bb       	out	0x17, r24	; 23
+PORTB= 0;
+    1004:	18 ba       	out	0x18, r1	; 24
+}
+    1006:	08 95       	ret
+
+00001008 <Clear_SwitchStatus>:
+
+void Clear_SwitchStatus(void)
+{
+Motor_Command=0;
+    1008:	10 92 be 00 	sts	0x00BE, r1
+Switch_state=0;
+    100c:	10 92 c0 00 	sts	0x00C0, r1
+Switch_Debounce_Counter=0;
+    1010:	10 92 bf 00 	sts	0x00BF, r1
+}
+    1014:	08 95       	ret
+
+00001016 <Get_Switch_Status>:
+
+uint8_t Get_Switch_Status(void)
+{
+return Motor_Command;
+
+}
+    1016:	80 91 be 00 	lds	r24, 0x00BE
+    101a:	08 95       	ret
+
+0000101c <switch_service>:
+void switch_service(void)
+{
+    101c:	1f 93       	push	r17
+uint8_t a;
+static uint8_t SwitchOldstatus=0;
+uint8_t SwitchNewState=0;
+a=PINB;
+    101e:	16 b3       	in	r17, 0x16	; 22
+		a &= 0x03;
+    1020:	13 70       	andi	r17, 0x03	; 3
+			SwitchNewState=0;
+
+		}
+
+
+	if(SwitchOldstatus ==SwitchNewState)
+    1022:	80 91 c1 00 	lds	r24, 0x00C1
+    1026:	18 17       	cp	r17, r24
+    1028:	f1 f1       	breq	.+124    	; 0x10a6 <switch_service+0x8a>
+		//else
+		//Switch_Debounce_Counter=0;
+	}
+	else
+	{
+		Switch_Debounce_Counter=0;
+    102a:	10 92 bf 00 	sts	0x00BF, r1
+		//Switch_state=0;
+	}
+
+
+
+switch(Switch_state)
+    102e:	80 91 c0 00 	lds	r24, 0x00C0
+    1032:	81 30       	cpi	r24, 0x01	; 1
+    1034:	a1 f0       	breq	.+40     	; 0x105e <switch_service+0x42>
+    1036:	82 30       	cpi	r24, 0x02	; 2
+    1038:	61 f1       	breq	.+88     	; 0x1092 <switch_service+0x76>
+case 2:Motor_Command =MOTOR_STOP;
+lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 10);
+lcd_write_string_4d("STOP ");
+break;
+case 3://Motor_Command =MOTOR_NO_COMMAND;
+default:Motor_Command =MOTOR_NO_COMMAND;
+    103a:	10 92 be 00 	sts	0x00BE, r1
+
+lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 10);
+    103e:	8a e8       	ldi	r24, 0x8A	; 138
+    1040:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+lcd_write_string_4d("     ");
+    1044:	89 ea       	ldi	r24, 0xA9	; 169
+    1046:	90 e0       	ldi	r25, 0x00	; 0
+    1048:	0e 94 5e 05 	call	0xabc	; 0xabc <lcd_write_string_4d>
+break;
+
+}
+	
+if (GetTimer_State(TIMER_3)==TIMER_EXPIRED)
+    104c:	83 e0       	ldi	r24, 0x03	; 3
+    104e:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+    1052:	83 30       	cpi	r24, 0x03	; 3
+    1054:	91 f0       	breq	.+36     	; 0x107a <switch_service+0x5e>
+{
+	Clear_SwitchStatus();
+	Stop_Timer(TIMER_3);
+}
+
+SwitchOldstatus = SwitchNewState;
+    1056:	10 93 c1 00 	sts	0x00C1, r17
+}
+    105a:	1f 91       	pop	r17
+    105c:	08 95       	ret
+
+
+
+switch(Switch_state)
+{
+case 1:Motor_Command =MOTOR_START;
+    105e:	80 93 be 00 	sts	0x00BE, r24
+lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 10);
+    1062:	8a e8       	ldi	r24, 0x8A	; 138
+    1064:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+lcd_write_string_4d("START");
+    1068:	8d e9       	ldi	r24, 0x9D	; 157
+    106a:	90 e0       	ldi	r25, 0x00	; 0
+    106c:	0e 94 5e 05 	call	0xabc	; 0xabc <lcd_write_string_4d>
+lcd_write_string_4d("     ");
+break;
+
+}
+	
+if (GetTimer_State(TIMER_3)==TIMER_EXPIRED)
+    1070:	83 e0       	ldi	r24, 0x03	; 3
+    1072:	0e 94 d0 07 	call	0xfa0	; 0xfa0 <GetTimer_State>
+    1076:	83 30       	cpi	r24, 0x03	; 3
+    1078:	71 f7       	brne	.-36     	; 0x1056 <switch_service+0x3a>
+PORTB= 0;
+}
+
+void Clear_SwitchStatus(void)
+{
+Motor_Command=0;
+    107a:	10 92 be 00 	sts	0x00BE, r1
+Switch_state=0;
+    107e:	10 92 c0 00 	sts	0x00C0, r1
+Switch_Debounce_Counter=0;
+    1082:	10 92 bf 00 	sts	0x00BF, r1
+}
+	
+if (GetTimer_State(TIMER_3)==TIMER_EXPIRED)
+{
+	Clear_SwitchStatus();
+	Stop_Timer(TIMER_3);
+    1086:	0e 94 f8 07 	call	0xff0	; 0xff0 <Stop_Timer>
+}
+
+SwitchOldstatus = SwitchNewState;
+    108a:	10 93 c1 00 	sts	0x00C1, r17
+}
+    108e:	1f 91       	pop	r17
+    1090:	08 95       	ret
+{
+case 1:Motor_Command =MOTOR_START;
+lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 10);
+lcd_write_string_4d("START");
+break;
+case 2:Motor_Command =MOTOR_STOP;
+    1092:	80 93 be 00 	sts	0x00BE, r24
+lcd_write_instruction_4d(lcd_SetCursor | lcd_LineOne | 10);
+    1096:	8a e8       	ldi	r24, 0x8A	; 138
+    1098:	0e 94 f2 04 	call	0x9e4	; 0x9e4 <lcd_write_instruction_4d>
+lcd_write_string_4d("STOP ");
+    109c:	83 ea       	ldi	r24, 0xA3	; 163
+    109e:	90 e0       	ldi	r25, 0x00	; 0
+    10a0:	0e 94 5e 05 	call	0xabc	; 0xabc <lcd_write_string_4d>
+    10a4:	d3 cf       	rjmp	.-90     	; 0x104c <switch_service+0x30>
+		}
+
+
+	if(SwitchOldstatus ==SwitchNewState)
+	{
+		if(SwitchNewState)
+    10a6:	11 23       	and	r17, r17
+    10a8:	11 f2       	breq	.-124    	; 0x102e <switch_service+0x12>
+		{
+			Switch_Debounce_Counter++;
+    10aa:	80 91 bf 00 	lds	r24, 0x00BF
+    10ae:	8f 5f       	subi	r24, 0xFF	; 255
+    10b0:	80 93 bf 00 	sts	0x00BF, r24
+			if(	Switch_Debounce_Counter >2)//20ms debounce time
+    10b4:	83 30       	cpi	r24, 0x03	; 3
+    10b6:	08 f4       	brcc	.+2      	; 0x10ba <switch_service+0x9e>
+    10b8:	ba cf       	rjmp	.-140    	; 0x102e <switch_service+0x12>
+			{
+			
+			Switch_state =SwitchNewState;
+    10ba:	10 93 c0 00 	sts	0x00C0, r17
+			Start_Timer(TIMER_3,5000);
+    10be:	83 e0       	ldi	r24, 0x03	; 3
+    10c0:	68 e8       	ldi	r22, 0x88	; 136
+    10c2:	73 e1       	ldi	r23, 0x13	; 19
+    10c4:	0e 94 b8 07 	call	0xf70	; 0xf70 <Start_Timer>
+    10c8:	b2 cf       	rjmp	.-156    	; 0x102e <switch_service+0x12>
+
+000010ca <__udivmodqi4>:
+    10ca:	99 1b       	sub	r25, r25
+    10cc:	79 e0       	ldi	r23, 0x09	; 9
+    10ce:	04 c0       	rjmp	.+8      	; 0x10d8 <__udivmodqi4_ep>
+
+000010d0 <__udivmodqi4_loop>:
+    10d0:	99 1f       	adc	r25, r25
+    10d2:	96 17       	cp	r25, r22
+    10d4:	08 f0       	brcs	.+2      	; 0x10d8 <__udivmodqi4_ep>
+    10d6:	96 1b       	sub	r25, r22
+
+000010d8 <__udivmodqi4_ep>:
+    10d8:	88 1f       	adc	r24, r24
+    10da:	7a 95       	dec	r23
+    10dc:	c9 f7       	brne	.-14     	; 0x10d0 <__udivmodqi4_loop>
+    10de:	80 95       	com	r24
+    10e0:	08 95       	ret
+
+000010e2 <__udivmodhi4>:
+    10e2:	aa 1b       	sub	r26, r26
+    10e4:	bb 1b       	sub	r27, r27
+    10e6:	51 e1       	ldi	r21, 0x11	; 17
+    10e8:	07 c0       	rjmp	.+14     	; 0x10f8 <__udivmodhi4_ep>
+
+000010ea <__udivmodhi4_loop>:
+    10ea:	aa 1f       	adc	r26, r26
+    10ec:	bb 1f       	adc	r27, r27
+    10ee:	a6 17       	cp	r26, r22
+    10f0:	b7 07       	cpc	r27, r23
+    10f2:	10 f0       	brcs	.+4      	; 0x10f8 <__udivmodhi4_ep>
+    10f4:	a6 1b       	sub	r26, r22
+    10f6:	b7 0b       	sbc	r27, r23
+
+000010f8 <__udivmodhi4_ep>:
+    10f8:	88 1f       	adc	r24, r24
+    10fa:	99 1f       	adc	r25, r25
+    10fc:	5a 95       	dec	r21
+    10fe:	a9 f7       	brne	.-22     	; 0x10ea <__udivmodhi4_loop>
+    1100:	80 95       	com	r24
+    1102:	90 95       	com	r25
+    1104:	bc 01       	movw	r22, r24
+    1106:	cd 01       	movw	r24, r26
+    1108:	08 95       	ret
+
+0000110a <_exit>:
+    110a:	f8 94       	cli
+
+0000110c <__stop_program>:
+    110c:	ff cf       	rjmp	.-2      	; 0x110c <__stop_program>
